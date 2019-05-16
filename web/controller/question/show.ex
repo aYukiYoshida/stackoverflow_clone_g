@@ -16,7 +16,6 @@ defmodule StackoverflowCloneG.Controller.Question.Show do
       SD.app_id(),
       req)
 
-    IO.inspect res
     case res do
       %Dodai.RetrieveDedicatedDataEntitySuccess{body: doc} -> Conn.json(conn, 200, Helper.to_response_body(doc))
       %Dodai.ResourceNotFound{}                            -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())

@@ -20,6 +20,7 @@ defmodule StackoverflowCloneG.Controller.Question.Create do
       SD.app_id(),
       req)
 
+    case res do
       %Dodai.CreateDedicatedDataEntitySuccess{body: doc} -> Conn.json(conn, 201, Helper.to_response_body(doc))
       %Dodai.BadRequest{}                                -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
     end
