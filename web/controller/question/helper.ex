@@ -13,6 +13,7 @@ defmodule StackoverflowCloneG.Controller.Question.Helper do
     Map.merge(doc["data"], %{
       "id"         => doc["_id"],
       "created_at" => doc["createdAt"],
+      "owner"      => doc["owner"]
     })
   end
 end
