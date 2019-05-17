@@ -1,7 +1,7 @@
 defmodule StackoverflowCloneG.Controller.Answer.Create do
   use StackoverflowCloneG.Controller.Application
   alias StackoverflowCloneG.Dodai, as: SD
-  alias StackoverflowCloneG.Controller.Question.Helper
+  alias StackoverflowCloneG.Controller.Answer.Helper
   alias StackoverflowCloneG.Error.ResourceNotFoundError
   alias StackoverflowCloneG.Error.BadRequestError
 
