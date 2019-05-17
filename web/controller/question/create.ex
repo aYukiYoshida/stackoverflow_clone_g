@@ -2,7 +2,7 @@ defmodule StackoverflowCloneG.Controller.Question.Create do
   use StackoverflowCloneG.Controller.Application
   alias StackoverflowCloneG.Dodai, as: SD
   alias StackoverflowCloneG.Controller.Question.Helper
-  alias StackoverflowCloneG.Error.ResourceNotFoundError
+  alias StackoverflowCloneG.Error.BadRequestError
 
   plug StackoverflowCloneG.Plug.FetchMe, :fetch, []
 
@@ -32,7 +32,7 @@ defmodule StackoverflowCloneG.Controller.Question.Create do
 
     case res do
       %Dodai.CreateDedicatedDataEntitySuccess{body: doc} -> Conn.json(conn, 201, Helper.to_response_body(doc))
-      %Dodai.BadRequest{}                                -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
+      %Dodai.BadRequest{}                                -> ErrorJson.json_by_error(conn, BadRequestError.new())
     end
   end
 end
