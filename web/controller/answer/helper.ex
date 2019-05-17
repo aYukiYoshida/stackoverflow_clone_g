@@ -1,5 +1,5 @@
-defmodule StackoverflowCloneA.Controller.Answer.Helper do
-    use StackoverflowCloneA.Controller.Application
+defmodule StackoverflowCloneG.Controller.Answer.Helper do
+    use StackoverflowCloneG.Controller.Application
   
     def to_response_body(doc) do
       base_map = %{
