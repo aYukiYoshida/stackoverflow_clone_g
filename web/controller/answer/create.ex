@@ -51,7 +51,6 @@ defmodule StackoverflowCloneG.Controller.Answer.Create do
       SD.app_id(),
       req
       )
-    IO.inspect res
     case res do
       %Dodai.RetrieveDedicatedDataEntitySuccess{}  -> f.(conn)
       %Dodai.ResourceNotFound{}                    -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
