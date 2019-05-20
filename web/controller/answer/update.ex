@@ -23,7 +23,7 @@ defmodule StackoverflowCloneG.Controller.Answer.Update do
 
         ### 3. クライアントにレスポンスを返す
         case res do
-          %Dodai.UpdateDedicatedDataEntitySuccess{body: doc} -> Conn.json(conn, res.status_code, Helper.to_response_body(doc))
+          %Dodai.UpdateDedicatedDataEntitySuccess{body: doc} -> Conn.json(conn, 200, Helper.to_response_body(doc))
           %Dodai.ResourceNotFound{}                            -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
         end
         
