@@ -16,7 +16,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
           org_data = contents["data"]
 
           comments = [%{
-            "id" => RandomString.stream(:alphanumeric) |> Enum.take(20) |> List.to_string,
+            "id" => RandomString.take(20, :alphanumeric),
             "user_id" => user_id,
             "body" => body["body"],
             "create_at" => Antikythera.Time.to_iso_timestamp(Antikythera.Time.now()),
