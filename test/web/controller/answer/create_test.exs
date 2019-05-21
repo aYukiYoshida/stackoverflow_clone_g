@@ -31,7 +31,6 @@ defmodule StackoverflowCloneG.Controller.Answer.CreateTest do
     end)
 
     res = Req.post_json(@api_prefix, @body, @header)
-    IO.inspect res.body
     assert res.status               == 200
     assert Poison.decode!(res.body) == AnswerData.gear()
   end
@@ -39,7 +38,6 @@ defmodule StackoverflowCloneG.Controller.Answer.CreateTest do
   test "create/1 when user did not login " <>
     "it returns InvalidCredential" do
     res = Req.post_json(@api_prefix, @body, @header)
-    IO.inspect res.body
     assert res.status               == 401
     assert Poison.decode!(res.body) == %{
       "code"        => "401-00",
