@@ -10,7 +10,7 @@ defmodule StackoverflowCloneG.Controller.Answer.Create do
   def create(%Antikythera.Conn{assigns: %{me: %{"_id" => user_id}}, request: %Antikythera.Request{body: body}} = conn) do
     case body do
       %{"body" => inner_body, "question_id" => question_id} ->
-        if inner_body == "" or question_id == "" do
+        if inner_body == "" or question_id == "" or inner_body == nil or question_id == nil do
           ErrorJson.json_by_error(conn, BadRequestError.new())
         else
           with_answer(conn, fn _answer ->

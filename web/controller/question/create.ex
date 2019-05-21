@@ -10,7 +10,7 @@ defmodule StackoverflowCloneG.Controller.Question.Create do
   def create(%Antikythera.Conn{assigns: %{me: %{"_id" => id}}, request: %Antikythera.Request{body: body}} = conn) do
     case body do
       %{"body" => inner_body, "title" => title} ->
-        if inner_body == "" or title == "" do
+        if inner_body == "" or title == "" or inner_body == nil or title == nil do
           ErrorJson.json_by_error(conn, BadRequestError.new())
         else
           data = %{
