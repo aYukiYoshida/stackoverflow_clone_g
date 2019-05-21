@@ -12,7 +12,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
       ""  -> ErrorJson.json_by_error(conn, BadRequestError.new())
       nil -> ErrorJson.json_by_error(conn, BadRequestError.new())
       _   ->
-        with_answer(conn, fn contents ->
+        with_collection(conn, fn contents ->
           org_data = contents["data"]
 
           comments = [%{
@@ -51,7 +51,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
     end
   end
 
-  def with_answer(%Antikythera.Conn{request: %Antikythera.Request{path_info: path_info}} = conn, f) do
+  def with_collection(%Antikythera.Conn{request: %Antikythera.Request{path_info: path_info}} = conn, f) do
     search_info = case path_info do
       [_,"question",_,_] -> "Question"
       [_,"answer",_,_] -> "Answer"
