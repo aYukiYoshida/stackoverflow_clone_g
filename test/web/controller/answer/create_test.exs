@@ -67,5 +67,21 @@ defmodule StackoverflowCloneG.Controller.Answer.CreateTest do
       "error"       => "InvalidCredential",
     }
   end
+  
+  test "create/1 when question id is invalid " <>
+    "it returns ResourceNotFound" do
+    :meck.expect(StackoverflowCloneG.Plug.FetchMe, :fetch, fn(conn, _) ->
+      Antikythera.Conn.assign(conn, :me, UserData.dodai())
+    end)
+    :meck.expect(G2gClient, :send, fn(_, _, _) -> %Dodai.ResourceNotFound{} end)
+
+    res = Req.post_json(@api_prefix, @body, @header)
+    assert res.status               == 404
+    assert Poison.decode!(res.body) == %{
+      "code"        => "404-04",
+      "description" => "The resource does not exist in the database.",
+      "error"       => "ResourceNotFound",
+    }
+  end
 
 end
