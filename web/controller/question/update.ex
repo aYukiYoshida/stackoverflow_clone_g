@@ -29,7 +29,6 @@ defmodule StackoverflowCloneG.Controller.Question.Update do
               req)
         ### 3. クライアントにレスポンスを返す(dodaiのresponse bodyがいつもと違うことに注意)
         # Conn.json(conn, 200, %{"message" => "書き換えが必要です"})
-        IO.inspect res
         case res do
           %Dodai.UpdateDedicatedDataEntitySuccess{body: doc} -> 
             Conn.json(conn, 200, Helper.to_response_body(doc))
