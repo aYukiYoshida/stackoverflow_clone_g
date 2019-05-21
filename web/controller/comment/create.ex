@@ -2,7 +2,8 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
   use StackoverflowCloneG.Controller.Application
   alias StackoverflowCloneG.Dodai, as: SD
   alias StackoverflowCloneG.Error.ResourceNotFoundError
-  alias StackoverflowCloneG.Controller.Question.Helper
+  alias StackoverflowCloneG.Controller.Question.Helper, as: QH
+  alias StackoverflowCloneG.Controller.Answer.Helper, as: AH
   alias StackoverflowCloneG.Error.BadRequestError
 
   plug StackoverflowCloneG.Plug.FetchMe, :fetch, []
@@ -44,7 +45,11 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
             req)
 
           case res do
-            %Dodai.UpdateDedicatedDataEntitySuccess{body: doc}   -> Conn.json(conn, 200, Helper.to_response_body(doc))
+            %Dodai.UpdateDedicatedDataEntitySuccess{body: doc}   -> 
+              case search_info do
+                "Question" -> Conn.json(conn, 200, QH.to_response_body(doc))
+                "Answer" -> Conn.json(conn, 200, AH.to_response_body(doc))
+              end
             %Dodai.ResourceNotFound{}                            -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
           end
         end)
