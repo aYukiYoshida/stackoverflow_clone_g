@@ -58,7 +58,7 @@ defmodule StackoverflowCloneG.Controller.Answer.CreateTest do
   end
 
   test "create/1 when user did not login " <>
-    "it returns InvalidCredential" do
+    "it returns InvalidCredentialError" do
     res = Req.post_json(@api_prefix, @body, @header)
     assert res.status               == 401
     assert Poison.decode!(res.body) == %{
@@ -68,8 +68,8 @@ defmodule StackoverflowCloneG.Controller.Answer.CreateTest do
     }
   end
   
-  test "create/1 when question id is invalid " <>
-    "it returns ResourceNotFound" do
+  test "create/1 when specified question is not found " <>
+    "it returns ResourceNotFoundError" do
     :meck.expect(StackoverflowCloneG.Plug.FetchMe, :fetch, fn(conn, _) ->
       Antikythera.Conn.assign(conn, :me, UserData.dodai())
     end)
