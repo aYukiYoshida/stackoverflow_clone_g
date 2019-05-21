@@ -1,7 +1,6 @@
 defmodule StackoverflowCloneG.Controller.Comment.Create do
   use StackoverflowCloneG.Controller.Application
   alias StackoverflowCloneG.Dodai, as: SD
-  alias StackoverflowCloneG.Error.ResourceNotFoundError
   alias StackoverflowCloneG.Controller.Question.Helper, as: QH
   alias StackoverflowCloneG.Controller.Answer.Helper, as: AH
   alias StackoverflowCloneG.Error.BadRequestError
@@ -50,7 +49,8 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
                 "Question" -> Conn.json(conn, 200, QH.to_response_body(doc))
                 "Answer" -> Conn.json(conn, 200, AH.to_response_body(doc))
               end
-            %Dodai.ResourceNotFound{}                            -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
+            _                                                    -> 
+              ErrorJson.json_by_error(conn, BadRequestError.new())
           end
         end)
     end
@@ -74,7 +74,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
       req)
     case res do
       %Dodai.RetrieveDedicatedDataEntitySuccess{body: body}  -> f.(body)
-      %Dodai.ResourceNotFound{}                              -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
+      _ -> ErrorJson.json_by_error(conn, BadRequestError.new())
     end
   end
 end
