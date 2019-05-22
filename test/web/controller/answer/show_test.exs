@@ -15,7 +15,7 @@ defmodule StackoverflowCloneG.Controller.Answer.ShowTest do
     assert Poison.decode!(res.body) == AnswerData.gear()
   end
 
-  test "show/1 when specified book is not found " <>
+  test "show/1 when specified answer is not found " <>
     "it returns ResourceNotFoundError" do
     :meck.expect(G2gClient, :send, fn(_, _, _) ->
       %Dodai.ResourceNotFound{}
