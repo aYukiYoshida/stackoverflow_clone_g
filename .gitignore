@@ -11,3 +11,6 @@ erl_crash.dump
 /coverage
 .DS_Store
 cmd.log
+/doc/*.pdf
+/doc/spec/*.pdf
+/doc/training/*.pdf
