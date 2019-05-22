@@ -7,7 +7,7 @@ defmodule StackoverflowCloneG.Controller.Vote.Create do
 
   plug StackoverflowCloneG.Plug.FetchMe, :fetch, []
 
-  def create(%Antikythera.Conn{assigns: %{me: %{"_id" => user_id}}, request: %Antikythera.Request{path_info: [_,_,question_id,_,vote_type]}} = conn) do
+  def create(%Antikythera.Conn{assigns: %{me: %{"_id" => user_id}}, request: %Antikythera.Request{path_info: [_,search_type,search_id,_,vote_type]}} = conn) do
     with_collection(conn, fn contents ->
       vote_input = case vote_type do
         "like_vote"    -> "like_voter_ids"
@@ -16,6 +16,10 @@ defmodule StackoverflowCloneG.Controller.Vote.Create do
       vote_opp = case vote_type do
         "like_vote"    -> "dislike_voter_ids"
         "dislike_vote" -> "like_voter_ids"
+      end
+      search_info = case search_type do
+        "question" -> "Question"
+        "answer"   -> "Answer"
       end
 
       # 二重投票を防止
@@ -34,8 +38,8 @@ defmodule StackoverflowCloneG.Controller.Vote.Create do
           req_body = %Dodai.UpdateDedicatedDataEntityRequestBody{data: new_data}
           req = Dodai.UpdateDedicatedDataEntityRequest.new(
             SD.default_group_id(),
-            "Question", 
-            question_id, 
+            search_info, 
+            search_id, 
             SD.root_key(),
             req_body)
           res = Sazabi.G2gClient.send(
@@ -55,8 +59,8 @@ defmodule StackoverflowCloneG.Controller.Vote.Create do
           req_body = %Dodai.UpdateDedicatedDataEntityRequestBody{data: new_data}
           req = Dodai.UpdateDedicatedDataEntityRequest.new(
             SD.default_group_id(),
-            "Question", 
-            question_id, 
+            search_info, 
+            search_id, 
             SD.root_key(),
             req_body)
           res = Sazabi.G2gClient.send(
@@ -72,12 +76,16 @@ defmodule StackoverflowCloneG.Controller.Vote.Create do
     end)
   end
 
-  # 指定してるQuestionが存在するかどうかをチェック
-  def with_collection(%Antikythera.Conn{request: %Antikythera.Request{path_info: [_,_,question_id,_,_]}} = conn, f) do
+  # 指定してるQuestionあるいはAnswerが存在するかどうかをチェック
+  def with_collection(%Antikythera.Conn{request: %Antikythera.Request{path_info: [_,search_type,search_id,_,_]}} = conn, f) do
+    search_info = case search_type do
+      "question" -> "Question"
+      "answer"   -> "Answer"
+    end
     req = Dodai.RetrieveDedicatedDataEntityRequest.new(
       SD.default_group_id(),
-      "Question",
-      question_id,
+      search_info,
+      search_id,
       SD.root_key())
     res = Sazabi.G2gClient.send(
       conn.context,
