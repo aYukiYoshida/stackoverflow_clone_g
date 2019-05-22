@@ -4,6 +4,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
   alias StackoverflowCloneG.Controller.Question.Helper, as: QH
   alias StackoverflowCloneG.Controller.Answer.Helper, as: AH
   alias StackoverflowCloneG.Error.BadRequestError
+  alias StackoverflowCloneG.Error.ResourceNotFoundError
 
   plug StackoverflowCloneG.Plug.FetchMe, :fetch, []
 
@@ -74,7 +75,7 @@ defmodule StackoverflowCloneG.Controller.Comment.Create do
       req)
     case res do
       %Dodai.RetrieveDedicatedDataEntitySuccess{body: body}  -> f.(body)
-      _ -> ErrorJson.json_by_error(conn, BadRequestError.new())
+      _ -> ErrorJson.json_by_error(conn, ResourceNotFoundError.new())
     end
   end
 end
