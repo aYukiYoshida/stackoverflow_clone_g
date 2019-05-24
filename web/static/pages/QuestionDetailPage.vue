@@ -1,7 +1,9 @@
 <template>
   <div>
-    !not_implemented!
-  </div>
+    <div v-if="hasValidQuestion">
+      <question :question="question"/>
+    </div>
+</div>
 </template>
 
 <script>
@@ -19,10 +21,21 @@ export default {
     };
   },
   computed: {
+    hasValidQuestion() {
+      return !(Object.keys(this.question).length === 0) && this.question.id === this.$route.params.id;
+    },
+
+    question() {
+      return this.$store.state.question;
+    }
   },
   mounted() {
+    this.retrieveQuestion();
   },
   methods: {
+    retrieveQuestion() {      
+      this.$store.dispatch('retrieveQuestion', { id: this.$route.params.id});    
+    },
   },
 };
 </script>
