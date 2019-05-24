@@ -48,9 +48,9 @@ defmodule StackoverflowCloneG.Controller.Question.CreateTest do
     ]
 
     Enum.each(invalid_bodies, fn body ->
-      res = Req.post_json(@api_prefix, body, @header)
-      assert res.status               == 400
-      assert Poison.decode!(res.body) == %{
+      res1 = Req.post_json(@api_prefix, body, @header)
+      assert res1.status               == 400
+      assert Poison.decode!(res1.body) == %{
         "code"        => "400-06",
         "description" => "Unable to understand the request.",
         "error"       => "BadRequest",
@@ -60,9 +60,9 @@ defmodule StackoverflowCloneG.Controller.Question.CreateTest do
 
   test "create/1 when user did not login " <>
     "it returns InvalidCredential" do
-    res = Req.post_json(@api_prefix, @body, @header)
-    assert res.status               == 401
-    assert Poison.decode!(res.body) == %{
+    res2 = Req.post_json(@api_prefix, @body, @header)
+    assert res2.status               == 401
+    assert Poison.decode!(res2.body) == %{
       "code"        => "401-00",
       "description" => "The given credential is invalid.",
       "error"       => "InvalidCredential",
