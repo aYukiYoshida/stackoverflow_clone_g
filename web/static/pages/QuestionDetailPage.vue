@@ -3,7 +3,10 @@
     <div v-if="hasValidQuestion">
       <question :question="question"/>
     </div>
-</div>
+    <div v-for="comment in question.comments" :key="comment.id">
+      <comment :comment="comment"/>
+    </div>
+ </div>
 </template>
 
 <script>
