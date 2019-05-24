@@ -3,6 +3,8 @@
     <div v-if="hasValidQuestion">
       <question :question="question"/>
     </div>
+    <br>
+    <h4>ツッコミ:</h4>
     <div v-for="comment in question.comments" :key="comment.id">
       <comment :comment="comment"/>
     </div>
@@ -12,12 +14,14 @@
 <script>
 import Question from '@/components/Question';
 import Answer from '@/components/Answer';
+import Comment from '@/components/Comment';
 
 export default {
   name: 'QuestionDetailPage',
   components: {
     Question,
     Answer,
+    Comment,
   },
   data() {
     return {
