@@ -124,13 +124,13 @@ export default {
     submitAnswer() {
       this.$store.dispatch('createAnswer', { body: this.answerBody, questionId: this.$route.params.id })
       .then(() => {
-        location.reload();
+        this.answerBody='';
       });
     },
     submitCommentQes() {
       this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.QuestionCommentBody })
       .then(() => {
-        location.reload();
+        this.QuestionCommentBody='';
       });
     },
   },
