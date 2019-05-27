@@ -2,11 +2,10 @@
   <div>
     <div v-if="hasValidQuestion">
       <question :question="question" 
-      @update="updateQuestion"
+        @update="updateQuestion"
       />
     </div>
-    <br>
-    <h2>質問へのツッコミ</h2>
+    <h2>質問へのコメント</h2>
     <hr>
     <div
       v-for="comment in question.comments"
@@ -28,23 +27,25 @@
             maxlength="50"
             required
           />
-        </div>
-        <div class="form-group">
-          <button
-            class="btn btn-primary mb-2"
-            type="submit"
-          >
-            投稿
-          </button>
-        </div>
-      </form>
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          投稿
+        </button>
+      </div>
+    </form>
     <h2>質問へのカイトウ</h2>
     <hr>
     <div
       v-for="answer in answers"
       :key="answer.id"
     >
-      <answer :answer="answer" />
+      <answer :answer="answer"
+        @update="updateAnswer"
+      />
     </div>
     <form
       class="data-form"
@@ -66,7 +67,7 @@
             class="btn btn-primary mb-2"
             type="submit"
           >
-            投稿
+            回答
           </button>
         </div>
       </form>
@@ -126,6 +127,9 @@ export default {
       .then(() => {
         this.answerBody='';
       });
+    },
+    updateAnswer({ id, body }) {
+      this.$store.dispatch('updateAnswer', { questionId: this.$route.params.id, id, body });
     },
     submitCommentQes() {
       this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.QuestionCommentBody })
