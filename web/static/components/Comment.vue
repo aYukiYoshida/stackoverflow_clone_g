@@ -1,8 +1,12 @@
 <template>
   <div>
-    {{ comment.body }}<br>
-    {{ comment.createAt }}&nbsp;&nbsp; {{ comment.userId }}&nbsp;<br>
-    <br>
+    <span>
+      <p>{{ comment.userId }}さん</p>
+      <p>{{ comment.body }}</p>
+    </span>
+    <span>
+      <p>{{ comment.createAt }}</p>
+    </span>
   </div>
 </template>
 

@@ -4,10 +4,7 @@
 .navbar-brand {
   font-size: 1rem;
 }
-body {
-    font-size:100%;
-}
-.question-title {
+.page-title {
   margin-bottom: 5px;
 }
 h1.question-title {
@@ -19,7 +16,7 @@ h1.question-title {
   font-size: 0.5rem;
   margin-bottom: 20px;
 }
-.question-body {
+.body {
   font-size: 1.0rem;
   margin-bottom: 20px;
 }

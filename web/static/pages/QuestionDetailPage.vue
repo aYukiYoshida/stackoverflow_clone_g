@@ -6,7 +6,7 @@
       />
     </div>
     <br>
-    <h1>ツッコミ</h1>
+    <h2>質問へのツッコミ</h2>
     <hr>
     <div
       v-for="comment in question.comments"
@@ -19,7 +19,7 @@
       @submit.prevent="submitCommentQes"
     >
       <div class="form-group">
-          <label for="form-body">コメントを追加</label>
+          <label for="form-body">質問へのツッコミを追加</label>
           <textarea
             id="form-body"
             v-model="QuestionCommentBody"
@@ -38,7 +38,7 @@
           </button>
         </div>
       </form>
-    <h1>何件の回答</h1>
+    <h2>質問へのカイトウ</h2>
     <hr>
     <div
       v-for="answer in answers"
@@ -51,8 +51,7 @@
       @submit.prevent="submitAnswer"
     >
       <div class="form-group">
-          <label for="form-body">回答</label>
-          <hr>
+          <label for="form-body">質問へのカイトウを追加</label>
           <textarea
             id="form-body"
             v-model="answerBody"
