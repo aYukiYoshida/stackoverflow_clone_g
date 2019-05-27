@@ -93,7 +93,6 @@ export default {
     return {
       answerBody: '',
       QuestionCommentBody: '',
-      AnswerCommentBody: '',
     };
   },
   computed: {
