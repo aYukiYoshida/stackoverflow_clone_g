@@ -57,12 +57,12 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.dispatch('createQuestion', {title: this.title, body: this.body})
-      .then(() => {
-        window.location.href='/#/';
-      });
-    }
-  }
+      this.$store.dispatch('createQuestion', { title: this.title, body: this.body })
+        .then(() => {
+          window.location.href = '/#/';
+        });
+    },
+  },
 };
 </script>
 

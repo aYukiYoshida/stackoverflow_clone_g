@@ -37,20 +37,22 @@
       </div>
       <div v-else>
         <div class="author-date">
-            回答者ID:&ensp;{{ answer.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ answer.createdAt }}
-            <span v-if="!answerEditing">
-              <button type="button" class="edit-button btn btn-link"
-                @click="startEdit"
-              >
-                回答を更新する
-              </button>
-            </span>
+          回答者ID:&ensp;{{ answer.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ answer.createdAt }}
+          <span v-if="!answerEditing">
+            <button
+              type="button"
+              class="edit-button btn btn-link"
+              @click="startEdit"
+            >
+              回答を更新する
+            </button>
+          </span>
         </div>
         <div class="body">
-            {{ answer.body }}
+          {{ answer.body }}
         </div>
       </div>
-    </div>  
+    </div>
     <div
       v-for="comment in answer.comments"
       :key="comment.id"
@@ -62,24 +64,24 @@
       @submit.prevent="submit"
     >
       <div class="form-group">
-          <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
-          <textarea
-            id="form-body"
-            v-model="commentBody"
-            class="body-edit form-control"
-            minlength="1"
-            maxlength="50"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <button
-            class="btn btn-primary mb-2"
-            type="submit"
-          >
-            投稿
-          </button>
-        </div>
+        <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
+        <textarea
+          id="form-body"
+          v-model="commentBody"
+          class="body-edit form-control"
+          minlength="1"
+          maxlength="50"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          投稿
+        </button>
+      </div>
     </form>
   </div>
 </template>
@@ -108,14 +110,14 @@ export default {
   methods: {
     submit() {
       this.$store.dispatch('createAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, body: this.commentBody })
-      .then(() => {
-        this.commentBody='';
-      });
+        .then(() => {
+          this.commentBody = '';
+        });
     },
     startEdit() {
       this.answerEditing = true;
       this.answerBody = this.answer.body;
-      this.answerId = this.answer.id
+      this.answerId = this.answer.id;
     },
     cancelEdit() {
       this.answerEditing = false;

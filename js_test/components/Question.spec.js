@@ -24,7 +24,7 @@ describe('Question', function () {
     ],
     body: 'bodyX',
   };
-  
+
   beforeEach(function () {
     store = new Vuex.Store({
       state: {
