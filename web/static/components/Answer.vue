@@ -3,6 +3,12 @@
     {{ answer.body }}<br>
     {{ answer.createdAt }}&nbsp;&nbsp; {{ answer.userId }}&nbsp;<br>
     <br>
+    <div
+      v-for="comment in answer.comments"
+      :key="comment.id"
+    >
+      <comment :comment="comment" />
+    </div>
     <form
       class="data-form"
       @submit.prevent="submit"
