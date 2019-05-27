@@ -59,7 +59,7 @@ export default {
     submit() {
       this.$store.dispatch('createAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, body: this.commentBody })
       .then(() => {
-        location.reload();
+        this.commentBody='';
       });
     },
   },
