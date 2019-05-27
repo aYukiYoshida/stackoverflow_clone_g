@@ -4,8 +4,23 @@
 .navbar-brand {
   font-size: 1rem;
 }
-.page-title {
-  font-size: 1.5rem;
+body {
+    font-size:100%;
+}
+.question-title {
+  margin-bottom: 5px;
+}
+h1.question-title {
+  font-weight:bold;
+  color: #0044a0;
+
+}
+.author-date {
+  font-size: 0.5rem;
+  margin-bottom: 20px;
+}
+.question-body {
+  font-size: 1.0rem;
   margin-bottom: 20px;
 }
 .navbar-default {

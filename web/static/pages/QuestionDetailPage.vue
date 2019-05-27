@@ -1,14 +1,24 @@
 <template>
   <div>
     <div v-if="hasValidQuestion">
-      <question :question="question"/>
+      <question :question="question" 
+      @update="updateQuestion"
+      />
     </div>
     <br>
-    <h4>ツッコミ:</h4>
-    <div v-for="comment in question.comments" :key="comment.id">
-      <comment :comment="comment"/>
+    <hr>
+    <h1>ツッコミ</h1>
+    <div
+      v-for="comment in question.comments"
+      :key="comment.id"
+    >
+      <comment :comment="comment" />
     </div>
- </div>
+    <hr>
+    <router-link :to="{ name: 'QuestionListPage'}">
+      一覧に戻る
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -34,14 +44,17 @@ export default {
 
     question() {
       return this.$store.state.question;
-    }
+    },
   },
   mounted() {
     this.retrieveQuestion();
   },
   methods: {
-    retrieveQuestion() {      
-      this.$store.dispatch('retrieveQuestion', { id: this.$route.params.id});    
+    retrieveQuestion() {
+      this.$store.dispatch('retrieveQuestion', { id: this.$route.params.id });
+    },
+    updateQuestion({ title, body }) {
+      this.$store.dispatch('updateQuestion', { id: this.$route.params.id, title, body });
     },
   },
 };
