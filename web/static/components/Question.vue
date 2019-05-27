@@ -15,7 +15,7 @@
       </div>
     </div>
     <div v-else>
-      <h1 class="question-title">
+      <h1 class="page-title">
         {{ question.title }}
       </h1>
     </div>
@@ -67,7 +67,7 @@
               </button>
             </span>
           </div>
-          <div class="question-body">
+          <div class="body">
             {{ question.body }}
           </div>
         </div>
