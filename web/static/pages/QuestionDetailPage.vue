@@ -14,6 +14,30 @@
     >
       <comment :comment="comment" />
     </div>
+    <form
+      class="data-form"
+      @submit.prevent="submitCommentQes"
+    >
+      <div class="form-group">
+          <label for="form-body">コメントを追加</label>
+          <textarea
+            id="form-body"
+            v-model="QuestionCommentBody"
+            class="body-edit form-control"
+            minlength="1"
+            maxlength="50"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+          >
+            投稿
+          </button>
+        </div>
+      </form>
     <h1>何件の回答</h1>
     <hr>
     <div
@@ -27,7 +51,7 @@
       @submit.prevent="submitAnswer"
     >
       <div class="form-group">
-          <label for="form-author">回答</label>
+          <label for="form-body">回答</label>
           <hr>
           <textarea
             id="form-body"
@@ -67,7 +91,9 @@ export default {
   },
   data() {
     return {
-      answerBody: ''
+      answerBody: '',
+      QuestionCommentBody: '',
+      AnswerCommentBody: '',
     };
   },
   computed: {
@@ -99,6 +125,12 @@ export default {
     },
     submitAnswer() {
       this.$store.dispatch('createAnswer', { body: this.answerBody, questionId: this.$route.params.id })
+      .then(() => {
+        location.reload();
+      });
+    },
+    submitCommentQes() {
+      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.QuestionCommentBody })
       .then(() => {
         location.reload();
       });
