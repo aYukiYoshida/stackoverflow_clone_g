@@ -1,6 +1,8 @@
 <template>
   <div>
-    未実装
+    {{ answer.body }}<br>
+    {{ answer.createdAt }}&nbsp;&nbsp; {{ answer.userId }}&nbsp;<br>
+    <br>
   </div>
 </template>
 
@@ -11,6 +13,12 @@ export default {
   name: 'Answer',
   components: {
     Comment,
+  },
+  props: {
+    answer: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
