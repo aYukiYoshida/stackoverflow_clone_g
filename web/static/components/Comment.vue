@@ -1,8 +1,8 @@
 <template>
   <div>
-    {{ comment.body }}<br/>
-    {{ comment.createAt }}&nbsp;&nbsp; {{ comment.userId }}&nbsp;<br/>
-    <br/>
+    {{ comment.body }}<br>
+    {{ comment.createAt }}&nbsp;&nbsp; {{ comment.userId }}&nbsp;<br>
+    <br>
   </div>
 </template>
 
