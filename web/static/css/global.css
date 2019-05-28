@@ -12,10 +12,26 @@
   font-weight:bold;
   color: #0044a0;
 }
+.page-body {
+  width: 50%;
+}
 .author-date {
-  display:block;
+  display:inline-block;
   font-size: 0.5rem;
   margin-bottom: 20px;
+}
+.author {
+  display:inline-block;
+  font-size: 0.5rem;
+  margin-bottom: 20px;
+}
+.date {
+  display:block;
+  font-size: 0.5rem;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  text-align: right;
 }
 .body {
   font-size: 1.0rem;

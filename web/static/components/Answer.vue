@@ -36,25 +36,23 @@
         </form>
       </div>
       <div v-else>
-        <div class="author-date">
-          回答者ID:&ensp;{{ answer.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ answer.createdAt }}
-          <span v-if="!answerEditing">
-            <button
-              type="button"
-              class="edit-button btn btn-link"
-              @click="startEdit"
-            >
-              回答を更新する
-            </button>
-          </span>
-        </div>
-        <div class="body balloon-set-box right">
-          <div class="balloon">
+        <div class="balloon-set-box left">
+          <div class="author">
+            名無しさん@{{ answer.userId }}
+          </div>
+          <div class="body balloon">
             {{ answer.body }}
+            <span v-if="!answerEditing">
+              <button
+                type="button"
+                class="edit-button btn btn-link"
+                @click="startEdit"
+              >
+                更新する
+              </button>
+            </span>
           </div>
         </div>
-
-
       </div>
     </div>
     <h3>{{ answer.userId }}の回答へのコメント</h3>

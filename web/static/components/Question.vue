@@ -58,29 +58,30 @@
         </form>
       </div>
       <div v-else>
-        <div class="author-date">
-          質問者ID:&ensp;{{ question.userId }}&ensp;/&ensp;投稿日時:&ensp;
-        </div>
+          <!-- 質問者ID:&ensp;&ensp;/&ensp;投稿日時:&ensp; -->
         <div class="balloon-set-box left">
+          <div class="author">
+            名無しさん@{{ question.userId }}
+          </div>
           <div class="body balloon">
             {{ question.body }}
+            <span v-if="!editing">
+              <button
+                type="button"
+                class="edit-button btn btn-link"
+                @click="startEdit"
+              >
+                更新する
+              </button>
+            </span>
           </div>
-          <div class="author-date">
+          <div class="date">
             {{ question.createdAt }}
           </div>
-          <span v-if="!editing">
-            <button
-              type="button"
-              class="edit-button btn btn-link"
-              @click="startEdit"
-            >
-              更新する
-            </button>
-          </span>
         </div>
       </div>
     </div>
-    <form
+    <!-- <form
       class="data-form"
       @submit.prevent="createLikeVote"
     >
@@ -109,7 +110,7 @@
           ディスる
         </button>
       </div>
-    </form>
+    </form> -->
   </div>
 </template>
 
