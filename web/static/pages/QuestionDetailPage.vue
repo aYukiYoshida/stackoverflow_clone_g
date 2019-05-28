@@ -16,30 +16,54 @@
         :comment="comment"
         @update="updateQesComment" />
     </div>
-    <form
-      class="data-form"
-      @submit.prevent="submitCommentQes"
-    >
-      <div class="form-group">
-        <label for="form-body">質問へのコメントを追加</label>
-        <textarea
-          id="form-body"
-          v-model="QuestionCommentBody"
-          class="body-edit form-control"
-          minlength="1"
-          maxlength="50"
-          required
-        />
+    <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
+    <div v-if="commentEditing">
+      <form
+        class="comment-form"
+        @submit.prevent="submitCommentQes"
+      >
+        <div class="form-group">
+          <label for="form-body">質問へのコメントを追加</label>
+          <input
+            id="form-body"
+            v-model="commentBody"
+            :maxlength="authorMaxLength"
+            class="body-edit form-control"
+            type="text"
+            minlength="1"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+          >
+            投稿
+          </button>
+          <button
+            class="cancel-edit-button btn btn-outline-primary mb-2"
+            type="submit"
+            @click.prevent="cancelEdit"
+          >
+            キャンセル
+          </button>
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <div class="balloon-set-box right">
+        <span v-if="!commentEditing">
+          <button
+            type="button"
+            class="edit-button btn btn-link"
+            @click="startEdit"
+          >
+            質問へのコメントを追加
+          </button>
+        </span>
       </div>
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-        >
-          質問コメント投稿
-        </button>
-      </div>
-    </form>
+    </div>
     <h2>質問へのカイトウ</h2>
     <hr>
     <div
@@ -97,6 +121,8 @@ export default {
     return {
       answerBody: '',
       QuestionCommentBody: '',
+      commentBody: '',
+      commentEditing: false,
     };
   },
   computed: {
@@ -135,10 +161,18 @@ export default {
     updateAnswer({ id, body }) {
       this.$store.dispatch('updateAnswer', { questionId: this.$route.params.id, id, body });
     },
+    startEdit() {
+      this.commentEditing = true;
+      this.commentBody = this.comment.body;
+    },
+    cancelEdit() {
+      this.commentEditing = false;
+    },
     submitCommentQes() {
-      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.QuestionCommentBody })
+      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody})
         .then(() => {
           this.QuestionCommentBody = '';
+          this.commentEditing = false;
         });
     },
     updateQesComment({ id, body }) {
