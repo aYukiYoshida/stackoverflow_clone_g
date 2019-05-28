@@ -37,7 +37,9 @@
       <div v-else>
         <div class="balloon-set-box right">
           <div class="author">
-            名無しさん@{{ comment.userId }}
+            <router-link :to="{ name: 'UserDetailPage', params: { id:   
+              comment.userId }}">名無しさん@{{ comment.userId }}
+            </router-link>
           </div>
           <div class="body balloon">
             {{ comment.body }}
@@ -53,7 +55,7 @@
           </div>
         </div>
         <div class="date">
-          <p>{{ comment.createAt }}</p>
+          <p>Comment at {{ comment.createAt }}</p>
         </div>
       </div>
   </div>
