@@ -1,19 +1,19 @@
 <template>
-  <div class=page-body>
+  <div class="page-body">
     <div v-if="hasValidQuestion">
       <question
         :question="question"
         @update="updateQuestion"
       />
     </div>
-    <hr>
     <div
       v-for="comment in question.comments"
       :key="comment.id"
     >
-      <comment 
+      <comment
         :comment="comment"
-        @update="updateQesComment" />
+        @update="updateQesComment"
+      />
     </div>
     <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
     <div v-if="commentEditing">
@@ -80,7 +80,7 @@
       @submit.prevent="submitAnswer"
     >
       <div class="form-group">
-        <label for="form-body">質問へのカイトウを追加</label>
+        <label for="form-body">質問への回答を追加</label>
         <textarea
           id="form-body"
           v-model="answerBody"
@@ -169,14 +169,14 @@ export default {
       this.commentEditing = false;
     },
     submitCommentQes() {
-      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody})
+      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody })
         .then(() => {
           this.QuestionCommentBody = '';
           this.commentEditing = false;
         });
     },
     updateQesComment({ id, body }) {
-      this.$store.dispatch('updateQuestionComment', { questionId: this.$route.params.id, id, body});
+      this.$store.dispatch('updateQuestionComment', { questionId: this.$route.params.id, id, body });
     },
   },
 };
