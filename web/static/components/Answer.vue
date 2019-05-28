@@ -63,7 +63,6 @@
         </div>
       </div>
     </div>
-    <hr>
     <div
       v-for="comment in answer.comments"
       :key="comment.id"

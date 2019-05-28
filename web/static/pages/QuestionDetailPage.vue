@@ -6,7 +6,6 @@
         @update="updateQuestion"
       />
     </div>
-    <hr>
     <div
       v-for="comment in question.comments"
       :key="comment.id"
@@ -81,7 +80,7 @@
       @submit.prevent="submitAnswer"
     >
       <div class="form-group">
-        <label for="form-body">質問へのカイトウを追加</label>
+        <label for="form-body">質問への回答を追加</label>
         <textarea
           id="form-body"
           v-model="answerBody"
