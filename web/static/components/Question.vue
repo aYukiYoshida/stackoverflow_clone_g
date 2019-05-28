@@ -43,7 +43,7 @@
               class="btn btn-primary mb-2"
               type="submit"
             >
-              保存
+              保存する
             </button>
             <button
               class="cancel-edit-button btn btn-outline-primary mb-2"
