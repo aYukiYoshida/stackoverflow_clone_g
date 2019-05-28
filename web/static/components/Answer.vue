@@ -66,30 +66,54 @@
         @update="updateAnsComment"
         />
     </div>
-    <form
-      class="data-form"
-      @submit.prevent="submit"
-    >
-      <div class="form-group">
-        <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
-        <textarea
-          id="form-body"
-          v-model="commentBody"
-          class="body-edit form-control"
-          minlength="1"
-          maxlength="50"
-          required
-        />
+    <!-- 回答へコメント投稿するとき、「回答コメント追加」を押すと、入力箱が出る -->
+    <div v-if="commentEditing">
+      <form
+        class="comment-form"
+        @submit.prevent="submit"
+      >
+        <div class="form-group">
+          <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
+          <input
+            id="form-body"
+            v-model="commentBody"
+            :maxlength="authorMaxLength"
+            class="body-edit form-control"
+            type="text"
+            minlength="1"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+          >
+            投稿
+          </button>
+          <button
+            class="cancel-edit-button btn btn-outline-primary mb-2"
+            type="submit"
+            @click.prevent="cancelCommentEdit"
+          >
+            キャンセル
+          </button>
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <div class="balloon-set-box right">
+        <span v-if="!commentEditing">
+          <button
+            type="button"
+            class="edit-button btn btn-link"
+            @click="startCommentEdit"
+          >
+            回答へのコメントを追加
+          </button>
+        </span>
       </div>
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-        >
-          回答コメント投稿
-        </button>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -112,13 +136,23 @@ export default {
       commentBody: '',
       answerBody: '',
       answerEditing: false,
+      commentBody: '',
+      commentEditing: false,
     };
   },
   methods: {
+    startCommentEdit() {
+      this.commentEditing = true;
+      this.commentBody = this.comment.body;
+    },
+    cancelCommentEdit() {
+      this.commentEditing = false;
+    },
     submit() {
       this.$store.dispatch('createAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, body: this.commentBody })
         .then(() => {
           this.commentBody = '';
+          this.commentEditing = false;
         });
     },
     startEdit() {
