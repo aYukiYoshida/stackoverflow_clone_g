@@ -89,7 +89,6 @@ a {
 .right .balloon::after { /* 右側からの三角の位置 */
   right: -10px;
 }
- 
 .icon-box {
   width: 40px;
   height: 40px;
@@ -97,4 +96,7 @@ a {
   border: 2px solid #fff;
   box-shadow: 0 0 6px rgba(0,0,0,0.3);
   overflow: hidden;
+}
+.vote {
+  display: flex;
 }

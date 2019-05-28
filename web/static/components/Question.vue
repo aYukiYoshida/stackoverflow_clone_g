@@ -58,10 +58,11 @@
         </form>
       </div>
       <div v-else>
-          <!-- 質問者ID:&ensp;&ensp;/&ensp;投稿日時:&ensp; -->
         <div class="balloon-set-box left">
           <div class="author">
-            名無しさん@{{ question.userId }}
+            <router-link :to="{ name: 'UserDetailPage', params: { id:   
+              question.userId }}">名無しさん@{{ question.userId }}
+            </router-link>
           </div>
           <div class="body balloon">
             {{ question.body }}
@@ -76,41 +77,44 @@
             </span>
           </div>
           <div class="date">
-            {{ question.createdAt }}
+            <p>Question at {{ question.createdAt }}</p>
           </div>
         </div>
       </div>
-    </div>
-    <!-- <form
-      class="data-form"
-      @submit.prevent="createLikeVote"
-    >
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
+        <form
+          class="data-form "
+          @submit.prevent="createLikeVote"
         >
-          いいね
-        </button>
-      </div>
-    </form>
-    <div v-if="question.likeVoterIds && question.dislikeVoterIds">
-      {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
-    </div>
-    <form
-      class="data-form"
-      @submit.prevent="createDislikeVote"
-    >
-      <div class="form-group">
-        <br/>
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
+          <div class="form-group">
+            <button
+              class="btn btn-primary mb-2"
+              type="submit"
+            >
+              いいね
+            </button>
+          </div>
+        </form>
+        <form
+          class="data-form"
+          @submit.prevent="createDislikeVote"
         >
-          ディスる
-        </button>
+          <div class="form-group">
+            <br/>
+            <button
+              class="btn btn-primary mb-2"
+              type="submit"
+            >
+              ディスる
+            </button>
+          </div>
+        </form>
+                        <div v-if="question.likeVoterIds && question.dislikeVoterIds">
+          {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
+        </div>
+
+
       </div>
-    </form> -->
+    </div>
   </div>
 </template>
 

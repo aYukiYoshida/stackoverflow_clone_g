@@ -6,7 +6,6 @@
         @update="updateQuestion"
       />
     </div>
-    <h2>質問へのコメント</h2>
     <hr>
     <div
       v-for="comment in question.comments"

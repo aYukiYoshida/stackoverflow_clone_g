@@ -38,7 +38,9 @@
       <div v-else>
         <div class="balloon-set-box left">
           <div class="author">
-            名無しさん@{{ answer.userId }}
+            <router-link :to="{ name: 'UserDetailPage', params: { id:   
+              answer.userId }}">名無しさん@{{ answer.userId }}
+            </router-link>
           </div>
           <div class="body balloon">
             {{ answer.body }}
@@ -55,7 +57,6 @@
         </div>
       </div>
     </div>
-    <h3>{{ answer.userId }}の回答へのコメント</h3>
     <hr>
     <div
       v-for="comment in answer.comments"
