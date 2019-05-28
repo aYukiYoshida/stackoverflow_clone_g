@@ -84,7 +84,7 @@
           class="btn btn-primary mb-2"
           type="submit"
         >
-          投稿
+          回答コメント投稿
         </button>
       </div>
     </form>
