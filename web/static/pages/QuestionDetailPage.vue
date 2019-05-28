@@ -16,31 +16,7 @@
         :comment="comment"
         @update="updateQesComment" />
     </div>
-    <!-- <form
-      class="data-form"
-      @submit.prevent="submitCommentQes"
-    >
-      <div class="form-group">
-        <label for="form-body">質問へのコメントを追加</label>
-        <textarea
-          id="form-body"
-          v-model="QuestionCommentBody"
-          class="body-edit form-control"
-          minlength="1"
-          maxlength="50"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-        >
-          質問コメント投稿
-        </button>
-      </div>
-    </form> -->
-    <!-- 質問へコメント投稿するとき、「質問コメント投稿」を押すと、入力箱がでる -->
+    <!-- 質問へコメント投稿するとき、「質問コメント投稿」を押すと、入力箱が出る -->
     <div v-if="commentEditing">
       <form
         class="comment-form"
