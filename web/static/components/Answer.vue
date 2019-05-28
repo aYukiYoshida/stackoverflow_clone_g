@@ -57,7 +57,10 @@
       v-for="comment in answer.comments"
       :key="comment.id"
     >
-      <comment :comment="comment" />
+      <comment
+        :comment="comment"
+        @update="updateAnsComment"
+        />
     </div>
     <form
       class="data-form"
@@ -125,6 +128,9 @@ export default {
     update() {
       this.$emit('update', { id: this.answerId, body: this.answerBody });
       this.answerEditing = false;
+    },
+    updateAnsComment({ id, body }) {
+      this.$store.dispatch('updateAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, id, body});
     },
   },
 };
