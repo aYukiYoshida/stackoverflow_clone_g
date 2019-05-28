@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="hasValidQuestion">
-      <question :question="question" 
-      @update="updateQuestion"
+      <question
+        :question="question"
+        @update="updateQuestion"
       />
     </div>
-    <br>
-    <h2>質問へのツッコミ</h2>
+    <h2>質問へのコメント</h2>
     <hr>
     <div
       v-for="comment in question.comments"
@@ -19,57 +19,60 @@
       @submit.prevent="submitCommentQes"
     >
       <div class="form-group">
-          <label for="form-body">質問へのツッコミを追加</label>
-          <textarea
-            id="form-body"
-            v-model="QuestionCommentBody"
-            class="body-edit form-control"
-            minlength="1"
-            maxlength="50"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <button
-            class="btn btn-primary mb-2"
-            type="submit"
-          >
-            投稿
-          </button>
-        </div>
-      </form>
+        <label for="form-body">質問へのツッコミを追加</label>
+        <textarea
+          id="form-body"
+          v-model="QuestionCommentBody"
+          class="body-edit form-control"
+          minlength="1"
+          maxlength="50"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          投稿
+        </button>
+      </div>
+    </form>
     <h2>質問へのカイトウ</h2>
     <hr>
     <div
       v-for="answer in answers"
       :key="answer.id"
     >
-      <answer :answer="answer" />
+      <answer
+        :answer="answer"
+        @update="updateAnswer"
+      />
     </div>
     <form
       class="data-form"
       @submit.prevent="submitAnswer"
     >
       <div class="form-group">
-          <label for="form-body">質問へのカイトウを追加</label>
-          <textarea
-            id="form-body"
-            v-model="answerBody"
-            class="body-edit form-control"
-            minlength="1"
-            maxlength="50"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <button
-            class="btn btn-primary mb-2"
-            type="submit"
-          >
-            投稿
-          </button>
-        </div>
-      </form>
+        <label for="form-body">質問へのカイトウを追加</label>
+        <textarea
+          id="form-body"
+          v-model="answerBody"
+          class="body-edit form-control"
+          minlength="1"
+          maxlength="50"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          回答
+        </button>
+      </div>
+    </form>
     <router-link :to="{ name: 'QuestionListPage'}">
       一覧に戻る
     </router-link>
@@ -123,15 +126,18 @@ export default {
     },
     submitAnswer() {
       this.$store.dispatch('createAnswer', { body: this.answerBody, questionId: this.$route.params.id })
-      .then(() => {
-        this.answerBody='';
-      });
+        .then(() => {
+          this.answerBody = '';
+        });
+    },
+    updateAnswer({ id, body }) {
+      this.$store.dispatch('updateAnswer', { questionId: this.$route.params.id, id, body });
     },
     submitCommentQes() {
       this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.QuestionCommentBody })
-      .then(() => {
-        this.QuestionCommentBody='';
-      });
+        .then(() => {
+          this.QuestionCommentBody = '';
+        });
     },
   },
 };
