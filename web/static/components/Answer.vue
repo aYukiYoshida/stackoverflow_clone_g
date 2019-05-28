@@ -55,6 +55,10 @@
             </span>
           </div>
         </div>
+        <div class="date-left">
+          <p>Answer at {{ answer.createdAt }}</p>
+        </div>
+
       </div>
     </div>
     <hr>
