@@ -63,7 +63,8 @@
         </span>
       </div>
     </div>
-    <h2>質問へのカイトウ</h2>
+    <!-- XX件の回答を表示 -->
+    <h2 v-if="answers">{{ answers.length }}件の回答</h2>
     <hr>
     <div
       v-for="answer in answers"
