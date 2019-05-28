@@ -73,6 +73,36 @@
         </div>
       </div>
     </div>
+    <form
+      class="data-form"
+      @submit.prevent="createLikeVote"
+    >
+      <div class="form-group">
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          いいね
+        </button>
+      </div>
+    </form>
+    <div>
+      {{ (question.likeVoterIds).length - (question.dislikeVoterIds).length }}
+    </div>
+    <form
+      class="data-form"
+      @submit.prevent="createDislikeVote"
+    >
+      <div class="form-group">
+        <br/>
+        <button
+          class="btn btn-primary mb-2"
+          type="submit"
+        >
+          ディスる
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -96,6 +126,8 @@ export default {
       editing: false,
       editingBody: '',
       editingTitle: '',
+      likeVote: 'like_vote',
+      dislikeVote: 'dislike_vote',
     };
   },
   methods: {
@@ -110,6 +142,12 @@ export default {
     update() {
       this.$emit('update', { title: this.editingTitle, body: this.editingBody });
       this.editing = false;
+    },
+    createLikeVote() {
+      this.$store.dispatch('createQuestionVote', { questionId: this.$route.params.id, voteType: this.likeVote });
+    },
+    createDislikeVote() {
+      this.$store.dispatch('createQuestionVote', { questionId: this.$route.params.id, voteType: this.dislikeVote });
     },
   },
 };
