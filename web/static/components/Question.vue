@@ -86,8 +86,8 @@
         </button>
       </div>
     </form>
-    <div>
-      {{ (question.likeVoterIds).length - (question.dislikeVoterIds).length }}
+    <div v-if="question.likeVoterIds && question.dislikeVoterIds">
+      {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
     </div>
     <form
       class="data-form"
