@@ -85,19 +85,19 @@
       <div class="form-group">
         <div v-if="question.likeVoterIds && question.dislikeVoterIds">
           <button
-            class="btn btn-primary mb-2"
+            class="btn btn-default mb-2"
             type="submit"
             @click.prevent="createLikeVote"
           >
-            いいね
+            <img src="../imgs/like.png" width="20" >
           </button>
           {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
           <button
-            class="btn btn-primary mb-2"
+            class="btn btn-default mb-2"
             type="submit"
             @click.prevent="createDislikeVote"
           >
-            ディスる
+            <img src="../imgs/dislike.png" width="20" >
           </button>
           </div>
         </div>
