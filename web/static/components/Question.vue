@@ -15,9 +15,11 @@
       </div>
     </div>
     <div v-else>
-      <h1 class="page-title">
-        {{ question.title }}
-      </h1>
+      <div class="page-header">
+        <h1 class="page-title">
+          {{ question.title }}
+        </h1>
+      </div>
       <hr>
     </div>
     <div class="main-area">
@@ -57,7 +59,15 @@
       </div>
       <div v-else>
         <div class="author-date">
-          質問者ID:&ensp;{{ question.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ question.createdAt }}
+          質問者ID:&ensp;{{ question.userId }}&ensp;/&ensp;投稿日時:&ensp;
+        </div>
+        <div class="balloon-set-box left">
+          <div class="body balloon">
+            {{ question.body }}
+          </div>
+          <div class="author-date">
+            {{ question.createdAt }}
+          </div>
           <span v-if="!editing">
             <button
               type="button"
@@ -67,9 +77,6 @@
               更新する
             </button>
           </span>
-        </div>
-        <div class="body">
-          {{ question.body }}
         </div>
       </div>
     </div>
@@ -129,6 +136,9 @@ export default {
       likeVote: 'like_vote',
       dislikeVote: 'dislike_vote',
     };
+  },
+  mounted(){
+    return
   },
   methods: {
     startEdit() {

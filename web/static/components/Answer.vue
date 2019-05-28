@@ -48,9 +48,13 @@
             </button>
           </span>
         </div>
-        <div class="body">
-          {{ answer.body }}
+        <div class="body balloon-set-box right">
+          <div class="balloon">
+            {{ answer.body }}
+          </div>
         </div>
+
+
       </div>
     </div>
     <h3>{{ answer.userId }}の回答へのコメント</h3>
