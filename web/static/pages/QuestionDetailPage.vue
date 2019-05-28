@@ -16,14 +16,14 @@
         :comment="comment"
         @update="updateQesComment" />
     </div>
-    <!-- 質問へコメント投稿するとき、「質問コメント投稿」を押すと、入力箱が出る -->
+    <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
     <div v-if="commentEditing">
       <form
         class="comment-form"
         @submit.prevent="submitCommentQes"
       >
         <div class="form-group">
-          <label for="form-body">質問へのコメント</label>
+          <label for="form-body">質問へのコメントを追加</label>
           <input
             id="form-body"
             v-model="commentBody"
@@ -59,7 +59,7 @@
             class="edit-button btn btn-link"
             @click="startEdit"
           >
-            質問コメント投稿
+            質問へのコメントを追加
           </button>
         </span>
       </div>
