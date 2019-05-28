@@ -25,6 +25,13 @@
   font-size: 0.5rem;
   margin-bottom: 20px;
 }
+.date-left {
+  display:block;
+  font-size: 0.5rem;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  text-align: left;
+}
 .date {
   display:block;
   font-size: 0.5rem;

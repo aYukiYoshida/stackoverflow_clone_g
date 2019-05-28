@@ -76,9 +76,9 @@
               </button>
             </span>
           </div>
-          <div class="date">
-            <p>Question at {{ question.createdAt }}</p>
-          </div>
+        </div>
+        <div class="date-left">
+          <p>Question at {{ question.createdAt }}</p>
         </div>
       </div>
       <!-- 投票ボタン -->
