@@ -1,12 +1,62 @@
 <template>
   <div>
-    <span>
-      <p>{{ comment.userId }}さん</p>
-      <p>{{ comment.body }}</p>
-    </span>
-    <span>
-      <p>{{ comment.createAt }}</p>
-    </span>
+    <div v-if="editing">
+        <form
+          class="comment-form"
+          @submit.prevent="update"
+        >
+          <div class="form-group">
+            <label for="form-body">コメント</label>
+            <input
+              id="form-body"
+              v-model="editingBody"
+              :maxlength="authorMaxLength"
+              class="body-edit form-control"
+              type="text"
+              minlength="1"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <button
+              class="btn btn-primary mb-2"
+              type="submit"
+            >
+              保存
+            </button>
+            <button
+              class="cancel-edit-button btn btn-outline-primary mb-2"
+              type="submit"
+              @click.prevent="cancelEdit"
+            >
+              キャンセル
+            </button>
+          </div>
+        </form>
+      </div>
+      <div v-else>
+        <div class="author-date">
+          質問者ID:&ensp;{{ comment.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ comment.createdAt }}
+          <span v-if="!editing">
+            <button
+              type="button"
+              class="edit-button btn btn-link"
+              @click="startEdit"
+            >
+              更新する
+            </button>
+          </span>
+        </div>
+        <div>
+          <span>
+            <p>{{ comment.userId }}さん</p>
+            <p>{{ comment.body }}</p>
+          </span>
+          <span>
+            <p>{{ comment.createAt }}</p>
+          </span>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -17,6 +67,27 @@ export default {
     comment: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      newCommentauthor: '',
+      editing: false,
+      editingBody: '',
+    };
+  },
+  methods: {
+    startEdit() {
+      this.editing = true;
+      this.editingBody = this.comment.body;
+      this.editingId = this.comment.id
+    },
+    cancelEdit() {
+      this.editing = false;
+    },
+    update() {
+      this.$emit('update', { id: this.editingId, body: this.editingBody });
+      this.editing = false;
     },
   },
 };

@@ -12,7 +12,9 @@
       v-for="comment in question.comments"
       :key="comment.id"
     >
-      <comment :comment="comment" />
+      <comment 
+        :comment="comment"
+        @update="updateQesComment" />
     </div>
     <form
       class="data-form"
@@ -138,6 +140,9 @@ export default {
         .then(() => {
           this.QuestionCommentBody = '';
         });
+    },
+    updateQesComment({ id, body }) {
+      this.$store.dispatch('updateQuestionComment', { questionId: this.$route.params.id, id, body});
     },
   },
 };
