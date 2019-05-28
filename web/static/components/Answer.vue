@@ -53,6 +53,8 @@
         </div>
       </div>
     </div>
+    <h3>{{ answer.userId }}の回答へのコメント</h3>
+    <hr>
     <div
       v-for="comment in answer.comments"
       :key="comment.id"
