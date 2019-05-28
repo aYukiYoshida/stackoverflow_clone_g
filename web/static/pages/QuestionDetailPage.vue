@@ -36,7 +36,7 @@
           class="btn btn-primary mb-2"
           type="submit"
         >
-          投稿
+          質問コメント投稿
         </button>
       </div>
     </form>
