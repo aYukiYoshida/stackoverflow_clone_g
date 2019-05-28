@@ -13,7 +13,25 @@
   color: #0044a0;
 }
 .page-body {
-  width: 50%;
+  width: 100%;
+  display: block;
+}
+.stackoverflow-body {
+  display: inline-block;
+  width: 500px;
+}
+.access-body {
+  display: inline-block;
+  width: 500px;
+  vertical-align: top;
+  margin: 0px 25px;
+  padding: 10px;
+  position:sticky; /* 要素をスクロールに応じて固定 */
+  top:0; /* 縦スクロールに追従 */
+  z-index: 100; /* z-indexで最前面に持ってくる */
+}
+.commercial{
+  margin-bottom: 50px 0px;
 }
 .author-date {
   display:inline-block;
