@@ -60,8 +60,11 @@
       <div v-else>
         <div class="balloon-set-box left">
           <div class="author">
-            <router-link :to="{ name: 'UserDetailPage', params: { id:   
-              question.userId }}">名無しさん@{{ question.userId }}
+            <router-link
+              :to="{ name: 'UserDetailPage', params: { id:
+                question.userId }}"
+            >
+              名無しさん@{{ question.userId }}
             </router-link>
           </div>
           <div class="body balloon">
@@ -89,7 +92,10 @@
             type="submit"
             @click.prevent="createLikeVote"
           >
-            <img src="../imgs/like.png" width="20" >
+            <img
+              src="../imgs/like.png"
+              width="20"
+            >
           </button>
           {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
           <button
@@ -97,9 +103,11 @@
             type="submit"
             @click.prevent="createDislikeVote"
           >
-            <img src="../imgs/dislike.png" width="20" >
+            <img
+              src="../imgs/dislike.png"
+              width="20"
+            >
           </button>
-          </div>
         </div>
       </div>
     </div>
@@ -130,8 +138,8 @@ export default {
       dislikeVote: 'dislike_vote',
     };
   },
-  mounted(){
-    return
+  mounted() {
+
   },
   methods: {
     startEdit() {

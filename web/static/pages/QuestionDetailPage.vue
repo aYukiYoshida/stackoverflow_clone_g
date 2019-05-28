@@ -1,5 +1,5 @@
 <template>
-  <div class=page-body>
+  <div class="page-body">
     <div v-if="hasValidQuestion">
       <question
         :question="question"
@@ -11,9 +11,10 @@
       v-for="comment in question.comments"
       :key="comment.id"
     >
-      <comment 
+      <comment
         :comment="comment"
-        @update="updateQesComment" />
+        @update="updateQesComment"
+      />
     </div>
     <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
     <div v-if="commentEditing">
@@ -169,14 +170,14 @@ export default {
       this.commentEditing = false;
     },
     submitCommentQes() {
-      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody})
+      this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody })
         .then(() => {
           this.QuestionCommentBody = '';
           this.commentEditing = false;
         });
     },
     updateQesComment({ id, body }) {
-      this.$store.dispatch('updateQuestionComment', { questionId: this.$route.params.id, id, body});
+      this.$store.dispatch('updateQuestionComment', { questionId: this.$route.params.id, id, body });
     },
   },
 };

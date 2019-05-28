@@ -38,8 +38,11 @@
       <div v-else>
         <div class="balloon-set-box left">
           <div class="author">
-            <router-link :to="{ name: 'UserDetailPage', params: { id:   
-              answer.userId }}">名無しさん@{{ answer.userId }}
+            <router-link
+              :to="{ name: 'UserDetailPage', params: { id:
+                answer.userId }}"
+            >
+              名無しさん@{{ answer.userId }}
             </router-link>
           </div>
           <div class="body balloon">
@@ -58,7 +61,6 @@
         <div class="date-left">
           <p>Answer at {{ answer.createdAt }}</p>
         </div>
-
       </div>
     </div>
     <hr>
@@ -69,7 +71,7 @@
       <comment
         :comment="comment"
         @update="updateAnsComment"
-        />
+      />
     </div>
     <!-- 回答へコメント投稿するとき、「回答コメント追加」を押すと、入力箱が出る -->
     <div v-if="commentEditing">
@@ -141,7 +143,6 @@ export default {
       commentBody: '',
       answerBody: '',
       answerEditing: false,
-      commentBody: '',
       commentEditing: false,
     };
   },
@@ -173,7 +174,9 @@ export default {
       this.answerEditing = false;
     },
     updateAnsComment({ id, body }) {
-      this.$store.dispatch('updateAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, id, body});
+      this.$store.dispatch('updateAnswerComment', {
+        questionId: this.$route.params.id, answerId: this.answer.id, id, body,
+      });
     },
   },
 };
