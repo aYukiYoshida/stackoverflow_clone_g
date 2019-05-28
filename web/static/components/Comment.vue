@@ -35,26 +35,25 @@
         </form>
       </div>
       <div v-else>
-        <div class="author-date">
-          質問者ID:&ensp;{{ comment.userId }}&ensp;/&ensp;投稿日時:&ensp;{{ comment.createdAt }}
-          <span v-if="!editing">
-            <button
-              type="button"
-              class="edit-button btn btn-link"
-              @click="startEdit"
-            >
-              更新する
-            </button>
-          </span>
+        <div class="balloon-set-box right">
+          <div class="author">
+            名無しさん@{{ comment.userId }}
+          </div>
+          <div class="body balloon">
+            {{ comment.body }}
+            <span v-if="!editing">
+              <button
+                type="button"
+                class="edit-button btn btn-link"
+                @click="startEdit"
+              >
+                更新する
+              </button>
+            </span>
+          </div>
         </div>
-        <div>
-          <span>
-            <p>{{ comment.userId }}さん</p>
-            <p>{{ comment.body }}</p>
-          </span>
-          <span>
-            <p>{{ comment.createAt }}</p>
-          </span>
+        <div class="date">
+          <p>{{ comment.createAt }}</p>
         </div>
       </div>
   </div>
