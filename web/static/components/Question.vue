@@ -81,38 +81,26 @@
           </div>
         </div>
       </div>
-        <form
-          class="data-form "
-          @submit.prevent="createLikeVote"
-        >
-          <div class="form-group">
-            <button
-              class="btn btn-primary mb-2"
-              type="submit"
-            >
-              いいね
-            </button>
-          </div>
-        </form>
-        <form
-          class="data-form"
-          @submit.prevent="createDislikeVote"
-        >
-          <div class="form-group">
-            <br/>
-            <button
-              class="btn btn-primary mb-2"
-              type="submit"
-            >
-              ディスる
-            </button>
-          </div>
-        </form>
-                        <div v-if="question.likeVoterIds && question.dislikeVoterIds">
+      <!-- 投票ボタン -->
+      <div class="form-group">
+        <div v-if="question.likeVoterIds && question.dislikeVoterIds">
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+            @click.prevent="createLikeVote"
+          >
+            いいね
+          </button>
           {{ question.likeVoterIds.length - question.dislikeVoterIds.length }}
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+            @click.prevent="createDislikeVote"
+          >
+            ディスる
+          </button>
+          </div>
         </div>
-
-
       </div>
     </div>
   </div>
