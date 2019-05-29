@@ -79,7 +79,7 @@
         @submit.prevent="submit"
       >
         <div class="form-group">
-          <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
+          <label for="form-body">名無しさん@{{ answer.userId }}さんの回答へのコメントを追加</label>
           <input
             id="form-body"
             v-model="commentBody"

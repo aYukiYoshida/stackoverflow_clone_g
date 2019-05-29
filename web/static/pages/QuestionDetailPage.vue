@@ -23,7 +23,7 @@
           @submit.prevent="submitCommentQes"
         >
           <div class="form-group">
-            <label for="form-body">質問へのコメントを追加</label>
+            <label for="form-body">名無しさん@{{question.userId}}さんの質問へのコメントを追加</label>
             <input
               id="form-body"
               v-model="commentBody"
