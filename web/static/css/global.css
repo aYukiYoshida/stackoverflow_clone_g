@@ -4,6 +4,11 @@
 .navbar-brand {
   font-size: 1rem;
 }
+.navbar-body {
+  position:sticky; /* 要素をスクロールに応じて固定 */
+  top:0; /* 縦スクロールに追従 */
+  z-index: 200; /* z-indexで最前面に持ってくる */
+}
 .page-header {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -19,6 +24,7 @@
 .stackoverflow-body {
   display: inline-block;
   width: 500px;
+  margin-left: 200px;
 }
 .access-body {
   display: inline-block;
@@ -27,7 +33,7 @@
   margin: 0px 25px;
   padding: 10px;
   position:sticky; /* 要素をスクロールに応じて固定 */
-  top:0; /* 縦スクロールに追従 */
+  top:50px; /* 縦スクロールに追従 */
   z-index: 100; /* z-indexで最前面に持ってくる */
 }
 .commercial{

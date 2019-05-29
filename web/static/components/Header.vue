@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-default">
+  <nav class="navbar-body navbar navbar-default">
     <router-link
       class="navbar-brand"
       to="/"

@@ -106,20 +106,20 @@
     </div>
     <div class="access-body">
       <div class="commercial">
-        <p>世界生先端のソフトウェア技術はここに。<br>CONNECT YOUR DREAMS TO THE FUTURE</p>
         <div>
           <a href="https://www.access-company.com/">
             <img src="https://www.access-company.com/wp-content/themes/access_jp/img/logo.svg" width=500 alt="ACCESS">
           </a>
         </div>
+        <p>世界生先端のソフトウェア技術はここに。<br>CONNECT YOUR DREAMS TO THE FUTURE</p>
       </div>
       <div class="commercial">
-        <p>注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
         <div>
           <a href="https://www.access-company.com/news_event/archives/2018/1218/">
             <img src="https://www.access-company.com/files/2018/12/ACCESS_Twine4Car_Dashboard_B.jpg" alt="プレスリリース" width=500>
           </a>
         </div>
+        <p>注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
       </div>
   </div>
   </div>
