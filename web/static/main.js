@@ -4,6 +4,7 @@ import router from '@/router';
 import { store } from '@/store';
 import '@/global_mixin';
 import '@/css/global.css';
+import '@/css/animate.css';
 
 Vue.config.productionTip = false;
 

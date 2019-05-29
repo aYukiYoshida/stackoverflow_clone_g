@@ -113,7 +113,10 @@
     </div>
     <div v-else>
       <div class="balloon-set-box right">
-        <span v-if="!commentEditing">
+        <div
+          v-if="!commentEditing"
+          class="btn_3d_jumpback"
+        >
           <button
             v-if="isLoggedIn()"
             type="button"
@@ -122,7 +125,7 @@
           >
             回答へのコメントを追加
           </button>
-        </span>
+        </div>
       </div>
     </div>
   </div>
