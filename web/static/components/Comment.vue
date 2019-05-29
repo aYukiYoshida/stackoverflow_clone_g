@@ -46,7 +46,7 @@
         </div>
         <div class="body balloon">
           {{ comment.body }}
-          <span v-if="!editing">
+          <span v-if="!editing&&hasValidComAuthorization">
             <button
               type="button"
               class="edit-button btn btn-link"
@@ -79,6 +79,11 @@ export default {
       editing: false,
       editingBody: '',
     };
+  },
+  computed: {
+    hasValidComAuthorization() {
+      return this.comment.userId === this.$store.state.id;
+    },
   },
   methods: {
     startEdit() {

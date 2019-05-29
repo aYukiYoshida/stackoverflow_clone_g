@@ -47,7 +47,7 @@
           </div>
           <div class="body balloon">
             {{ answer.body }}
-            <span v-if="!answerEditing">
+            <span v-if="!answerEditing&&hasValidAnsAuthorization">
               <button
                 type="button"
                 class="edit-button btn btn-link"
@@ -115,6 +115,7 @@
       <div class="balloon-set-box right">
         <span v-if="!commentEditing">
           <button
+            v-if="isLoggedIn()"
             type="button"
             class="edit-button btn btn-link"
             @click="startCommentEdit"
@@ -150,6 +151,14 @@ export default {
       ansComErrMsg: '',
     };
   },
+  computed: {
+    hasValidAnsAuthorization() {
+      return this.answer.userId === this.$store.state.id;
+    },
+    hasValidComAuthorization() {
+      return this.comment.userId === this.$store.state.id;
+    },
+  },
   methods: {
     startCommentEdit() {
       this.commentEditing = true;
@@ -167,7 +176,7 @@ export default {
         })
         .catch(() => {
           this.ansComErrMsg = 'ログインしてください';
-        })
+        });
     },
     startEdit() {
       this.answerEditing = true;
