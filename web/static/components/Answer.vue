@@ -104,6 +104,10 @@
           >
             キャンセル
           </button>
+          <!-- ログインしてない時、回答コメントを投稿すると、エラーを表示 -->
+          <div class="error-message">
+            {{ ansComErrMsg }}
+          </div>
         </div>
       </form>
     </div>
@@ -143,6 +147,7 @@ export default {
       answerBody: '',
       answerEditing: false,
       commentEditing: false,
+      ansComErrMsg: '',
     };
   },
   methods: {
@@ -153,12 +158,16 @@ export default {
     cancelCommentEdit() {
       this.commentEditing = false;
     },
+    // 回答コメントの追加とエラー処理
     submit() {
       this.$store.dispatch('createAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, body: this.commentBody })
         .then(() => {
           this.commentBody = '';
           this.commentEditing = false;
-        });
+        })
+        .catch(() => {
+          this.ansComErrMsg = 'ログインしてください';
+        })
     },
     startEdit() {
       this.answerEditing = true;
@@ -182,4 +191,7 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  color: red;
+}
 </style>
