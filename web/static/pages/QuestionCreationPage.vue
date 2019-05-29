@@ -37,6 +37,9 @@
         >
           投稿
         </button>
+        <div class="error-message">
+        {{ errorMsg }}
+      </div>
       </div>
     </form>
     <hr>
@@ -53,13 +56,17 @@ export default {
     return {
       title: '',
       body: '',
+      errorMsg: '',
     };
   },
   methods: {
     submit() {
       this.$store.dispatch('createQuestion', { title: this.title, body: this.body })
         .then(() => {
-          window.location.href = '/#/';
+          this.$router.push({ path: '/#/' });
+        })
+        .catch(() => {
+          this.errorMsg = 'ログインしてください';
         });
     },
   },
@@ -67,4 +74,7 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  color: red;
+}
 </style>

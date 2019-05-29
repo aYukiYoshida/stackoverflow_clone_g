@@ -48,6 +48,10 @@
             >
               キャンセル
             </button>
+            <!-- ログインしてない時、質問へのコメントを投稿すると、エラーを表示 -->
+            <div class="error-message">
+              {{ comErrorMsg }}
+            </div>
           </div>
         </form>
       </div>
@@ -98,6 +102,11 @@
           >
             回答
           </button>
+          <!-- ログインしてない時、回答を投稿すると、エラーを表示 -->
+          <div class="error-message">
+            {{ ansErrorMsg }}
+          </div>
+          </div>
         </div>
       </form>
       <router-link :to="{ name: 'QuestionListPage'}">
@@ -160,6 +169,8 @@ export default {
       QuestionCommentBody: '',
       commentBody: '',
       commentEditing: false,
+      ansErrorMsg: '',
+      comErrorMsg: '',
     };
   },
   computed: {
@@ -183,16 +194,21 @@ export default {
     retrieveQuestion() {
       this.$store.dispatch('retrieveQuestion', { id: this.$route.params.id });
     },
+    // 質問の更新
     updateQuestion({ title, body }) {
       this.$store.dispatch('updateQuestion', { id: this.$route.params.id, title, body });
     },
     retrieveAnswers() {
       this.$store.dispatch('retrieveAnswers', { questionId: this.$route.params.id });
     },
+    // 回答の追加とエラー処理
     submitAnswer() {
       this.$store.dispatch('createAnswer', { body: this.answerBody, questionId: this.$route.params.id })
         .then(() => {
           this.answerBody = '';
+        })
+        .catch(() => {
+          this.ansErrorMsg = 'ログインしてください';
         });
     },
     updateAnswer({ id, body }) {
@@ -205,11 +221,15 @@ export default {
     cancelEdit() {
       this.commentEditing = false;
     },
+    // 質問コメントの追加とエラー処理
     submitCommentQes() {
       this.$store.dispatch('createQuestionComment', { questionId: this.$route.params.id, body: this.commentBody })
         .then(() => {
           this.QuestionCommentBody = '';
           this.commentEditing = false;
+        })
+        .catch(() => {
+          this.comErrorMsg = 'ログインしてください';
         });
     },
     updateQesComment({ id, body }) {
@@ -220,4 +240,7 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  color: red;
+}
 </style>
