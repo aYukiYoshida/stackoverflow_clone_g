@@ -69,7 +69,9 @@
         </div>
       </div>
       <!-- XX件の回答を表示 -->
-      <h2 v-if="answers">{{ answers.length }}件の回答</h2>
+      <h2 v-if="answers">
+        {{ answers.length }}件の回答
+      </h2>
       <hr>
       <div
         v-for="answer in answers"
@@ -106,7 +108,6 @@
           <div class="error-message">
             {{ ansErrorMsg }}
           </div>
-          </div>
         </div>
       </form>
       <router-link :to="{ name: 'QuestionListPage'}">
@@ -117,7 +118,11 @@
       <div class="commercial">
         <div>
           <a href="https://www.access-company.com/">
-            <img src="https://www.access-company.com/wp-content/themes/access_jp/img/logo.svg" width=500 alt="ACCESS">
+            <img
+              src="https://www.access-company.com/wp-content/themes/access_jp/img/logo.svg"
+              width="500"
+              alt="ACCESS"
+            >
           </a>
         </div>
         <a href="https://www.access-company.com/">
@@ -127,7 +132,11 @@
       <div class="commercial">
         <div>
           <a href="https://www.access-company.com/news_event/archives/2018/1218/">
-            <img src="https://www.access-company.com/files/2018/12/ACCESS_Twine4Car_Dashboard_B.jpg" alt="プレスリリース" width=500>
+            <img
+              src="https://www.access-company.com/files/2018/12/ACCESS_Twine4Car_Dashboard_B.jpg"
+              alt="プレスリリース"
+              width="500"
+            >
           </a>
         </div>
         <a href="https://www.access-company.com/news_event/archives/2018/1218/">
@@ -137,17 +146,18 @@
       <div class="commercial">
         <div>
           <a href="https://publus.jp/">
-            <img src="https://publus.jp/wp-content/themes/publus/img/cmn/logo01.png" alt="製品情報" width=500>
+            <img
+              src="https://publus.jp/wp-content/themes/publus/img/cmn/logo01.png"
+              alt="製品情報"
+              width="500"
+            >
           </a>
         </div>
         <a href="https://publus.jp/">
           <p class="commercial">電子書籍ストアソリューション「PUBLUS（パブラス）」</p>
         </a>
       </div>
-
-
-      
-  </div>
+    </div>
   </div>
 </template>
 
