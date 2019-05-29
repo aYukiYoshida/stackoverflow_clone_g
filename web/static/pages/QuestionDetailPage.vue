@@ -69,8 +69,11 @@
             >
               質問へのコメントを追加
             </button>
-            <div v-if="!isLoggedIn()">
-              <router-link to="../login">
+            <div v-if="!isLoggedIn()" class="animated infinite bounce">
+              <router-link 
+                to="../login"
+                class="error-message"
+              >
                 コメントするにはログインしてください
               </router-link>
             </div>

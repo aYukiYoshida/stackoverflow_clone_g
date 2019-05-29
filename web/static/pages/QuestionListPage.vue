@@ -3,13 +3,22 @@
     <div class="page-title">
       <h1>質問を見る</h1>
     </div>
+    <div class="question-search">
+      <p>検索したいキーワードを入力してください。</p>
+      <input type="search" name="search" placeholder="タイトルを入力">
+      <input type="search" name="search" placeholder="質問内容を入力">
+      <input type="submit" name="submit" value="Search">
+    </div>
     <div v-if="isLoggedIn()">
       <router-link to="question/create">
         質問する
       </router-link>
     </div>
-    <div v-if="!isLoggedIn()">
-      <router-link to="/login">
+    <div v-if="!isLoggedIn()" class="animated infinite bounce">
+      <router-link 
+        to="/login"
+        class="error-message"
+      >
         質問するにはログインしてください
       </router-link>
     </div>
@@ -58,5 +67,8 @@ export default {
 .title {
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.error-message {
+  color: red;
 }
 </style>

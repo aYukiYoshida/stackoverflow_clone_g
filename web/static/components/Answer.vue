@@ -105,8 +105,10 @@
             キャンセル
           </button>
           <!-- ログインしてない時、回答コメントを投稿すると、エラーを表示 -->
-          <div class="error-message">
-            {{ ansComErrMsg }}
+          <div class="animated infinite bounce">
+            <div class="error-message">
+              {{ ansComErrMsg }}
+            </div>
           </div>
         </div>
       </form>
