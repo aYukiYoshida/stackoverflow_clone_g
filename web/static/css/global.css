@@ -23,8 +23,8 @@
 }
 .stackoverflow-body {
   display: inline-block;
-  width: 500px;
-  margin-left: 200px;
+  width: 600px;
+  margin-left: 100px;
 }
 .access-body {
   display: inline-block;
@@ -87,6 +87,40 @@ a {
 }
 .edit-button {
   vertical-align:middle;
+}
+.edit-button:hover {
+  cursor: pointer;
+}
+.btn_3d_jumpback {
+  perspective: 500px;
+  -webkit-perspective: 500px;
+  -moz-perspective: 500px;
+}
+.btn_3d_jumpback:hover button {
+  animation: btn_3d_jumpback 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+@-webkit-keyframes btn_3d_jumpback {
+  from {
+      transform: translateZ(0px) rotateX(0deg);
+      color: #ffffff;
+      background-color: #0044a0;
+      }
+  49.99% {
+      transform: translateZ(100px) rotateX(90deg);
+      background-color: #808080;
+      color: #0044a0;
+  }
+  50.00% {
+      transform: translateZ(100px) rotateX(-90deg);
+      background-color: #0044a0;
+      color: #808080;
+  }
+  to {
+      transform: translateZ(0px) rotateX(0deg);
+      background-color: #0044a0;
+      color: #ffffff;
+  }
 }
 
 /* ふきだし */

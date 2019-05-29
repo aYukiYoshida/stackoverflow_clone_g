@@ -79,7 +79,7 @@
         @submit.prevent="submit"
       >
         <div class="form-group">
-          <label for="form-body">{{ answer.userId }}さんの回答へのコメントを追加</label>
+          <label for="form-body">名無しさん@{{ answer.userId }}さんの回答へのコメントを追加</label>
           <input
             id="form-body"
             v-model="commentBody"
@@ -113,7 +113,10 @@
     </div>
     <div v-else>
       <div class="balloon-set-box right">
-        <span v-if="!commentEditing">
+        <div
+          v-if="!commentEditing"
+          class="btn_3d_jumpback"
+        >
           <button
             v-if="isLoggedIn()"
             type="button"
@@ -122,7 +125,7 @@
           >
             回答へのコメントを追加
           </button>
-        </span>
+        </div>
       </div>
     </div>
   </div>

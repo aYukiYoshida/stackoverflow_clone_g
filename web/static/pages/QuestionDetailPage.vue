@@ -23,7 +23,7 @@
           @submit.prevent="submitCommentQes"
         >
           <div class="form-group">
-            <label for="form-body">質問へのコメントを追加</label>
+            <label for="form-body">名無しさん@{{ question.userId }}さんの質問へのコメントを追加</label>
             <input
               id="form-body"
               v-model="commentBody"
@@ -57,7 +57,10 @@
       </div>
       <div v-else>
         <div class="balloon-set-box right">
-          <span v-if="!commentEditing">
+          <div
+            v-if="!commentEditing"
+            class="btn_3d_jumpback"
+          >
             <button
               v-if="isLoggedIn()"
               type="button"
@@ -71,7 +74,7 @@
                 コメントするにはログインしてください
               </router-link>
             </div>
-          </span>
+          </div>
         </div>
       </div>
       <!-- XX件の回答を表示 -->
@@ -146,7 +149,7 @@
           </a>
         </div>
         <a href="https://www.access-company.com/news_event/archives/2018/1218/">
-          <p class="commercial">注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
+          <p class="commercial">注目 ACCESS Twine™ for Car 2.0とは！！</p>
         </a>
       </div>
       <div class="commercial">
@@ -161,6 +164,20 @@
         </div>
         <a href="https://publus.jp/">
           <p class="commercial">電子書籍ストアソリューション「PUBLUS（パブラス）」</p>
+        </a>
+      </div>
+      <div class="commercial">
+        <div>
+          <a href="https://publus.jp/">
+            <img
+              src="https://jin-soku.biz/wp-content/themes/jinsoku/images/linkit/logo01.jpg"
+              alt="製品情報"
+              width="500"
+            >
+          </a>
+        </div>
+        <a href="https://publus.jp/">
+          <p class="commercial">Linkitは「安全」「便利」「快適」に使える<br>クラウド型ビジネスメッセージです</p>
         </a>
       </div>
     </div>
