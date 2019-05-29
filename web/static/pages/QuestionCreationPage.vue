@@ -38,8 +38,8 @@
           投稿
         </button>
         <div class="error-message">
-        {{ errorMsg }}
-      </div>
+          {{ errorMsg }}
+        </div>
       </div>
     </form>
     <hr>
