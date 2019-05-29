@@ -39,6 +39,9 @@
 .commercial{
   margin-bottom: 50px 0px;
 }
+p.commercial{
+  color: #0044a0;
+}
 .author-date {
   display:inline-block;
   font-size: 0.5rem;

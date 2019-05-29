@@ -111,7 +111,9 @@
             <img src="https://www.access-company.com/wp-content/themes/access_jp/img/logo.svg" width=500 alt="ACCESS">
           </a>
         </div>
-        <p>世界生先端のソフトウェア技術はここに。<br>CONNECT YOUR DREAMS TO THE FUTURE</p>
+        <a href="https://www.access-company.com/">
+          <p class="commercial">世界生先端のソフトウェア技術はここに。<br>CONNECT YOUR DREAMS TO THE FUTURE</p>
+        </a>
       </div>
       <div class="commercial">
         <div>
@@ -119,8 +121,23 @@
             <img src="https://www.access-company.com/files/2018/12/ACCESS_Twine4Car_Dashboard_B.jpg" alt="プレスリリース" width=500>
           </a>
         </div>
-        <p>注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
+        <a href="https://www.access-company.com/news_event/archives/2018/1218/">
+          <p class="commercial">注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
+        </a>
       </div>
+      <div class="commercial">
+        <div>
+          <a href="https://publus.jp/">
+            <img src="https://publus.jp/wp-content/themes/publus/img/cmn/logo01.png" alt="製品情報" width=500>
+          </a>
+        </div>
+        <a href="https://publus.jp/">
+          <p class="commercial">電子書籍ストアソリューション「PUBLUS（パブラス）」</p>
+        </a>
+      </div>
+
+
+      
   </div>
   </div>
 </template>
@@ -155,7 +172,7 @@ export default {
     },
 
     answers() {
-      return this.sortBy(this.$store.state.answers, 'createdAt').reverse();
+      return this.sortBy(this.$store.state.answers, 'createdAt');
     },
   },
   mounted() {
