@@ -42,6 +42,35 @@
 p.commercial{
   color: #0044a0;
 }
+.commercial:hover {
+	animation: buruburu .04s linear infinite;
+}
+@keyframes buruburu {
+  0% {
+  transform:translate(0, 0) rotate(-8deg);
+}
+50% {
+  transform:translate(0, -2px) rotate(0deg);
+}
+  100% {
+  transform:translate(0, 0) rotate(8deg);
+}
+}
+
+@keyframes uki-uki {
+0% {
+  transform: rotate(-8deg);
+  transition: transform ease-in;
+}
+50% {
+  transform: rotate(8deg);
+  transition: transform ease-in-out;
+}
+100% {
+  transform: rotate(-8deg);
+  transition: transform ease-out;
+}
+}
 .author-date {
   display:inline-block;
   font-size: 0.5rem;
@@ -100,7 +129,7 @@ a {
   animation: btn_3d_jumpback 0.3s ease-out;
   animation-fill-mode: forwards;
 }
-@-webkit-keyframes btn_3d_jumpback {
+@keyframes btn_3d_jumpback {
   from {
       transform: translateZ(0px) rotateX(0deg);
       color: #ffffff;
