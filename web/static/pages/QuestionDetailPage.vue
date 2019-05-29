@@ -59,12 +59,18 @@
         <div class="balloon-set-box right">
           <span v-if="!commentEditing">
             <button
+              v-if="isLoggedIn()"
               type="button"
               class="edit-button btn btn-link"
               @click="startEdit"
             >
               質問へのコメントを追加
             </button>
+            <div v-if="!isLoggedIn()">
+              <router-link to="../login">
+                コメントするにはログインしてください
+              </router-link>
+            </div>
           </span>
         </div>
       </div>
@@ -181,11 +187,16 @@ export default {
       commentEditing: false,
       ansErrorMsg: '',
       comErrorMsg: '',
+      qesComErrMsg: '',
     };
   },
   computed: {
     hasValidQuestion() {
       return !(Object.keys(this.question).length === 0) && this.question.id === this.$route.params.id;
+    },
+
+    hasValidAnsAuthorization() {
+      return this.answer.userId === this.$store.state.id;
     },
 
     question() {

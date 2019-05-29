@@ -47,7 +47,7 @@
           </div>
           <div class="body balloon">
             {{ answer.body }}
-            <span v-if="!answerEditing">
+            <span v-if="!answerEditing&&hasValidAnsAuthorization">
               <button
                 type="button"
                 class="edit-button btn btn-link"
@@ -104,6 +104,10 @@
           >
             キャンセル
           </button>
+          <!-- ログインしてない時、回答コメントを投稿すると、エラーを表示 -->
+          <div class="error-message">
+            {{ ansComErrMsg }}
+          </div>
         </div>
       </form>
     </div>
@@ -111,6 +115,7 @@
       <div class="balloon-set-box right">
         <span v-if="!commentEditing">
           <button
+            v-if="isLoggedIn()"
             type="button"
             class="edit-button btn btn-link"
             @click="startCommentEdit"
@@ -143,7 +148,16 @@ export default {
       answerBody: '',
       answerEditing: false,
       commentEditing: false,
+      ansComErrMsg: '',
     };
+  },
+  computed: {
+    hasValidAnsAuthorization() {
+      return this.answer.userId === this.$store.state.id;
+    },
+    hasValidComAuthorization() {
+      return this.comment.userId === this.$store.state.id;
+    },
   },
   methods: {
     startCommentEdit() {
@@ -153,11 +167,15 @@ export default {
     cancelCommentEdit() {
       this.commentEditing = false;
     },
+    // 回答コメントの追加とエラー処理
     submit() {
       this.$store.dispatch('createAnswerComment', { questionId: this.$route.params.id, answerId: this.answer.id, body: this.commentBody })
         .then(() => {
           this.commentBody = '';
           this.commentEditing = false;
+        })
+        .catch(() => {
+          this.ansComErrMsg = 'ログインしてください';
         });
     },
     startEdit() {
@@ -182,4 +200,7 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  color: red;
+}
 </style>

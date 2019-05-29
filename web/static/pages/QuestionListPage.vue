@@ -3,9 +3,14 @@
     <div class="page-title">
       <h1>質問を見る</h1>
     </div>
-    <div>
+    <div v-if="isLoggedIn()">
       <router-link to="question/create">
         質問する
+      </router-link>
+    </div>
+    <div v-if="!isLoggedIn()">
+      <router-link to="/login">
+        質問するにはログインしてください
       </router-link>
     </div>
     <hr>

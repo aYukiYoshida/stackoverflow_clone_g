@@ -69,7 +69,7 @@
           </div>
           <div class="body balloon">
             {{ question.body }}
-            <span v-if="!editing">
+            <span v-if="!editing&&hasValidQesAuthorization">
               <button
                 type="button"
                 class="edit-button btn btn-link"
@@ -108,6 +108,14 @@
               width="20"
             >
           </button>
+          <div v-if="!isLoggedIn()">
+            <router-link
+              to="../login"
+              class="error-message"
+            >
+              投票するにはログインしてください
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -138,6 +146,11 @@ export default {
       dislikeVote: 'dislike_vote',
     };
   },
+  computed: {
+    hasValidQesAuthorization() {
+      return this.question.userId === this.$store.state.id;
+    },
+  },
   mounted() {
 
   },
@@ -165,4 +178,7 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  color: red;
+}
 </style>
