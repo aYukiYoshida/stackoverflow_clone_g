@@ -1,115 +1,136 @@
 <template>
   <div class="page-body">
-    <div v-if="hasValidQuestion">
-      <question
-        :question="question"
-        @update="updateQuestion"
-      />
-    </div>
-    <div
-      v-for="comment in question.comments"
-      :key="comment.id"
-    >
-      <comment
-        :comment="comment"
-        @update="updateQesComment"
-      />
-    </div>
-    <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
-    <div v-if="commentEditing">
+    <div class="stackoverflow-body">
+      <div v-if="hasValidQuestion">
+        <question
+          :question="question"
+          @update="updateQuestion"
+        />
+      </div>
+      <div
+        v-for="comment in question.comments"
+        :key="comment.id"
+      >
+        <comment
+          :comment="comment"
+          @update="updateQesComment"
+        />
+      </div>
+      <!-- 質問へコメント投稿するとき、「質問コメント追加」を押すと、入力箱が出る -->
+      <div v-if="commentEditing">
+        <form
+          class="comment-form"
+          @submit.prevent="submitCommentQes"
+        >
+          <div class="form-group">
+            <label for="form-body">質問へのコメントを追加</label>
+            <input
+              id="form-body"
+              v-model="commentBody"
+              :maxlength="authorMaxLength"
+              class="body-edit form-control"
+              type="text"
+              minlength="1"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <button
+              class="btn btn-primary mb-2"
+              type="submit"
+            >
+              投稿
+            </button>
+            <button
+              class="cancel-edit-button btn btn-outline-primary mb-2"
+              type="submit"
+              @click.prevent="cancelEdit"
+            >
+              キャンセル
+            </button>
+            <!-- ログインしてない時、質問へのコメントを投稿すると、エラーを表示 -->
+            <div class="error-message">
+              {{ comErrorMsg }}
+            </div>
+          </div>
+        </form>
+      </div>
+      <div v-else>
+        <div class="balloon-set-box right">
+          <span v-if="!commentEditing">
+            <button
+              type="button"
+              class="edit-button btn btn-link"
+              @click="startEdit"
+            >
+              質問へのコメントを追加
+            </button>
+          </span>
+        </div>
+      </div>
+      <!-- XX件の回答を表示 -->
+      <h2 v-if="answers">{{ answers.length }}件の回答</h2>
+      <hr>
+      <div
+        v-for="answer in answers"
+        :key="answer.id"
+      >
+        <answer
+          :answer="answer"
+          @update="updateAnswer"
+        />
+      </div>
       <form
-        class="comment-form"
-        @submit.prevent="submitCommentQes"
+        class="data-form"
+        @submit.prevent="submitAnswer"
       >
         <div class="form-group">
-          <label for="form-body">質問へのコメントを追加</label>
-          <input
+          <label for="form-body">質問への回答を追加</label>
+          <textarea
             id="form-body"
-            v-model="commentBody"
-            :maxlength="authorMaxLength"
+            v-model="answerBody"
             class="body-edit form-control"
-            type="text"
             minlength="1"
+            maxlength="50"
             required
-          >
+          />
         </div>
         <div class="form-group">
           <button
             class="btn btn-primary mb-2"
             type="submit"
           >
-            投稿
+            回答
           </button>
-          <button
-            class="cancel-edit-button btn btn-outline-primary mb-2"
-            type="submit"
-            @click.prevent="cancelEdit"
-          >
-            キャンセル
-          </button>
-          <!-- ログインしてない時、質問へのコメントを投稿すると、エラーを表示 -->
+          <!-- ログインしてない時、回答を投稿すると、エラーを表示 -->
           <div class="error-message">
-            {{ comErrorMsg }}
+            {{ ansErrorMsg }}
+          </div>
           </div>
         </div>
       </form>
+      <router-link :to="{ name: 'QuestionListPage'}">
+        一覧に戻る
+      </router-link>
     </div>
-    <div v-else>
-      <div class="balloon-set-box right">
-        <span v-if="!commentEditing">
-          <button
-            type="button"
-            class="edit-button btn btn-link"
-            @click="startEdit"
-          >
-            質問へのコメントを追加
-          </button>
-        </span>
+    <div class="access-body">
+      <div class="commercial">
+        <div>
+          <a href="https://www.access-company.com/">
+            <img src="https://www.access-company.com/wp-content/themes/access_jp/img/logo.svg" width=500 alt="ACCESS">
+          </a>
+        </div>
+        <p>世界生先端のソフトウェア技術はここに。<br>CONNECT YOUR DREAMS TO THE FUTURE</p>
       </div>
-    </div>
-    <!-- XX件の回答を表示 -->
-    <h2 v-if="answers">{{ answers.length }}件の回答</h2>
-    <hr>
-    <div
-      v-for="answer in answers"
-      :key="answer.id"
-    >
-      <answer
-        :answer="answer"
-        @update="updateAnswer"
-      />
-    </div>
-    <form
-      class="data-form"
-      @submit.prevent="submitAnswer"
-    >
-      <div class="form-group">
-        <label for="form-body">質問への回答を追加</label>
-        <textarea
-          id="form-body"
-          v-model="answerBody"
-          class="body-edit form-control"
-          minlength="1"
-          maxlength="50"
-          required
-        />
+      <div class="commercial">
+        <div>
+          <a href="https://www.access-company.com/news_event/archives/2018/1218/">
+            <img src="https://www.access-company.com/files/2018/12/ACCESS_Twine4Car_Dashboard_B.jpg" alt="プレスリリース" width=500>
+          </a>
+        </div>
+        <p>注目の新商品 ACCESS Twine™ for Car 2.0とは！！</p>
       </div>
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-        >
-          回答
-        </button>
-        <!-- ログインしてない時、回答を投稿すると、エラーを表示 -->
-        <div class="error-message">
-        {{ ansErrorMsg }}
-      </div>
-      </div>
-    </form>
-    <router-link :to="{ name: 'QuestionListPage'}">
-      一覧に戻る
-    </router-link>
+  </div>
   </div>
 </template>
 

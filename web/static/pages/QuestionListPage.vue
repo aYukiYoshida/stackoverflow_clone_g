@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      質問を見る
+      <h1>質問を見る</h1>
     </div>
     <div>
       <router-link to="question/create">
