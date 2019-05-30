@@ -4,8 +4,8 @@
       class="navbar-brand"
       to="/"
     >
-        <s>StackoverFlowClone</s>
-        StackInstantMessage
+      <s>StackoverFlowClone</s>
+      StackInstantMessage
     </router-link>
     <div class="form-inline my-2 my-lg-0">
       <div class="navbar-text">

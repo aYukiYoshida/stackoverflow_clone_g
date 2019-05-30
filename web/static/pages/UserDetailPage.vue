@@ -13,9 +13,9 @@
         :key="question.id"
       >
         <div class="question-title">
-            <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
-              {{ question.title }}
-            </router-link>
+          <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
+            {{ question.title }}
+          </router-link>
         </div>
         <div class="additional">
           Posted at {{ question.createdAt }}

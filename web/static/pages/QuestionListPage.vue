@@ -18,7 +18,7 @@
             minlength="1"
             maxlength="50"
             required
-          />
+          >
         </div>
         <div class="form-group">
           <button
@@ -67,18 +67,18 @@
         :key="question.id"
         class="question-list"
       >
-      <div>
-        <p class="title-list">
-          <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
-            {{ question.title }}
-          </router-link>
-        </p>
-        <p class="author-list">
-          <router-link :to="{ name: 'UserDetailPage', params: { id: question.userId }}">
-            名無しさん@{{ question.userId }}
-          </router-link>
-        </p>
-      </div>
+        <div>
+          <p class="title-list">
+            <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
+              {{ question.title }}
+            </router-link>
+          </p>
+          <p class="author-list">
+            <router-link :to="{ name: 'UserDetailPage', params: { id: question.userId }}">
+              名無しさん@{{ question.userId }}
+            </router-link>
+          </p>
+        </div>
         <div class="additional">
           Posted at {{ question.createdAt }}
         </div>
