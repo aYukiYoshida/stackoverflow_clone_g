@@ -11,13 +11,30 @@
 }
 .question-list-body {
   display: block;
-  width: 600px;
+  width: 750px;
   margin-left: auto;
-  margin-right: auto;    
+  margin-right: auto; 
+  position:relative   
 }
 .page-header {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.title-list {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight:bold;
+  color: #0044a0;
+  text-align: left;  /* 文章を左寄せする(※) */
+  float: left;     /* 左端に寄せて、後続を右側へ回り込ませる */
+}
+.author-list {
+  text-align: right; /* 文章を右寄せする */
+}
+.additional {
+  color: #aaa;
+  font-size: small;
+  text-align: left;
 }
 .page-title {
   font-weight:bold;
@@ -112,10 +129,6 @@ p.commercial{
 }
 a {
   color: #0044a0;
-}
-.additional {
-  color: #aaa;
-  font-size: small;
 }
 .main-area {
   background-color: none

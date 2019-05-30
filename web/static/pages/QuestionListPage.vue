@@ -1,7 +1,7 @@
 <template>
   <div class="question-list-body">
     <div class="page-title">
-      <h1>メッセージを見る</h1>
+      <h1>質問を見る</h1>
     </div>
     <div class="question-search">
       <form
@@ -40,12 +40,12 @@
     <div v-if="isLoggedIn()">
       <p class="post-msg">
         <router-link to="question/create">
-          メッセージを投稿する
+          質問を投稿する
         </router-link>
       </p>
       <p class="post-qes">
         <a href="https://ja.stackoverflow.com/questions/ask">
-          質問したい方はこちら
+          本当に質問を投稿する
         </a>
       </p>
     </div>
@@ -67,16 +67,20 @@
         :key="question.id"
         class="question-list"
       >
-        <h5 class="title">
+      <div>
+        <p class="title-list">
           <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
             {{ question.title }}
           </router-link>
-        </h5>
+        </p>
+        <p class="author-list">
+          <router-link :to="{ name: 'UserDetailPage', params: { id: question.userId }}">
+            名無しさん@{{ question.userId }}
+          </router-link>
+        </p>
+      </div>
         <div class="additional">
           Posted at {{ question.createdAt }}
-          by <router-link :to="{ name: 'UserDetailPage', params: { id: question.userId }}">
-            {{ question.userId }}
-          </router-link>
         </div>
         <hr>
       </div>
@@ -87,16 +91,20 @@
         :key="ques.id"
         class="question-list"
       >
-        <h5 class="title">
-          <router-link :to="{ name: 'QuestionDetailPage', params: { id: ques.id }}">
-            {{ ques.title }}
-          </router-link>
-        </h5>
+        <div>
+          <p class="title-list">
+            <router-link :to="{ name: 'QuestionDetailPage', params: { id: ques.id }}">
+              {{ ques.title }}
+            </router-link>
+          </p>
+          <p class="author-list">
+            <router-link :to="{ name: 'UserDetailPage', params: { id: ques.userId }}">
+              名無しさん@{{ ques.userId }}
+            </router-link>
+          </p>
+        </div>
         <div class="additional">
           Posted at {{ ques.createdAt }}
-          by <router-link :to="{ name: 'UserDetailPage', params: { id: ques.userId }}">
-            {{ ques.userId }}
-          </router-link>
         </div>
         <hr>
       </div>
@@ -155,10 +163,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
 .error-message {
   color: red;
 }
