@@ -69,8 +69,11 @@
             >
               質問へのコメントを追加
             </button>
-            <div v-if="!isLoggedIn()" class="animated infinite bounce">
-              <router-link 
+            <div
+              v-if="!isLoggedIn()"
+              class="animated infinite bounce"
+            >
+              <router-link
                 to="../login"
                 class="error-message"
               >

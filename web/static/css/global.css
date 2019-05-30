@@ -9,9 +9,32 @@
   top:0; /* 縦スクロールに追従 */
   z-index: 200; /* z-indexで最前面に持ってくる */
 }
+.question-list-body {
+  display: block;
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto; 
+  position:relative   
+}
 .page-header {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.title-list {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight:bold;
+  color: #0044a0;
+  text-align: left;  /* 文章を左寄せする(※) */
+  float: left;     /* 左端に寄せて、後続を右側へ回り込ませる */
+}
+.author-list {
+  text-align: right; /* 文章を右寄せする */
+}
+.additional {
+  color: #aaa;
+  font-size: small;
+  text-align: left;
 }
 .page-title {
   font-weight:bold;
@@ -41,6 +64,35 @@
 }
 p.commercial{
   color: #0044a0;
+}
+.commercial:hover {
+	animation: buruburu .04s linear infinite;
+}
+@keyframes buruburu {
+  0% {
+  transform:translate(0, 0) rotate(-8deg);
+}
+50% {
+  transform:translate(0, -2px) rotate(0deg);
+}
+  100% {
+  transform:translate(0, 0) rotate(8deg);
+}
+}
+
+@keyframes uki-uki {
+0% {
+  transform: rotate(-8deg);
+  transition: transform ease-in;
+}
+50% {
+  transform: rotate(8deg);
+  transition: transform ease-in-out;
+}
+100% {
+  transform: rotate(-8deg);
+  transition: transform ease-out;
+}
 }
 .author-date {
   display:inline-block;
@@ -78,10 +130,6 @@ p.commercial{
 a {
   color: #0044a0;
 }
-.additional {
-  color: #aaa;
-  font-size: small;
-}
 .main-area {
   background-color: none
 }
@@ -100,7 +148,7 @@ a {
   animation: btn_3d_jumpback 0.3s ease-out;
   animation-fill-mode: forwards;
 }
-@-webkit-keyframes btn_3d_jumpback {
+@keyframes btn_3d_jumpback {
   from {
       transform: translateZ(0px) rotateX(0deg);
       color: #ffffff;
@@ -170,4 +218,11 @@ a {
 }
 .question-search{
   margin-bottom: 40px
+}
+.post-msg {
+  text-align: left;  /* 文章を左寄せする(※) */
+  float: left;     /* 左端に寄せて、後続を右側へ回り込ませる */
+}
+.post-qes {
+  text-align: right; /* 文章を右寄せする */
 }

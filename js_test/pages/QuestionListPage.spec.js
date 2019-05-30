@@ -43,8 +43,8 @@ describe('QuestionListPage', function () {
       router,
     });
     assert(retrieveQuestionsStub.called);
-    assert(wrapper.find('.title').text().includes(questions[0].title));
-    assert(wrapper.find('.additional').text().includes(questions[0].userId));
+    assert(wrapper.find('.title-list').text().includes(questions[0].title));
+    assert(wrapper.find('.author-list').text().includes(questions[0].userId));
     assert(wrapper.find('.additional').text().includes(questions[0].createdAt));
   });
 });

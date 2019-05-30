@@ -108,7 +108,10 @@
               width="20"
             >
           </button>
-          <div v-if="!isLoggedIn()" class="animated infinite bounce">
+          <div
+            v-if="!isLoggedIn()"
+            class="animated infinite bounce"
+          >
             <router-link
               to="../login"
               class="error-message"

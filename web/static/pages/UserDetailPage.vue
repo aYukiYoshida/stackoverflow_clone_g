@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="question-list-body">
     <div class="page-title">
       ユーザー詳細
     </div>
