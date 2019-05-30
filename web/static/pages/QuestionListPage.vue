@@ -151,7 +151,6 @@ export default {
       if (this.resultBody.length === 0) {
         this.errorMsg = '該当なし';
       }
-      this.queryBody = '';
     },
     clear() {
       this.resultBody = [];
