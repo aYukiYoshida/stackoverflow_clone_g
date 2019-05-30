@@ -51,7 +51,7 @@
       </router-link>
     </div>
     <hr>
-    <div v-if="resultBody==''">
+    <div v-if="resultBody.length==0&&errorMsg==''">
       <div
         v-for="question in questions"
         :key="question.id"
@@ -70,7 +70,7 @@
         <hr>
       </div>
     </div>
-    <div v-else>
+    <div v-else-if="resultBody!=[]&&errorMsg==''">
       <div
         v-for="ques in resultBody"
         :key="ques.id"
@@ -89,6 +89,9 @@
         <hr>
       </div>
     </div>
+    <div>
+      {{ errorMsg }}
+    </div>
   </div>
 </template>
 
@@ -100,6 +103,7 @@ export default {
     return {
       queryBody: '',
       resultBody: [],
+      errorMsg: '',
       c: 0,
       l: 0,
     };
@@ -118,14 +122,21 @@ export default {
     },
     query() {
       this.resultBody = [];
+      this.errorMsg = '';
       for (this.c = 0, this.l = (this.questions).length; this.c < this.l; this.c = this.c + 1) {
         if (this.questions[this.c].title.match(this.queryBody)) {
           this.resultBody.push(this.questions[this.c]);
         }
       }
+      if (this.resultBody.length === 0) {
+        this.errorMsg = '該当なし';
+      }
+      this.queryBody = '';
     },
     clear() {
       this.resultBody = [];
+      this.errorMsg = '';
+      this.queryBody = '';
     },
   },
 };
