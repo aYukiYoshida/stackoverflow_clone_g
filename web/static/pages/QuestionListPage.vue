@@ -1,43 +1,53 @@
 <template>
-  <div>
+  <div class="question-list-body">
     <div class="page-title">
-      <h1>質問を見る</h1>
+      <h1>メッセージを見る</h1>
     </div>
-    <form
-      class="data-form"
-      @submit.prevent="query"
-    >
-      <div class="form-group">
-        <label for="form-body">質問タイトルを検索</label>
-        <textarea
-          id="form-body"
-          v-model="queryBody"
-          class="body-edit form-control"
-          minlength="1"
-          maxlength="50"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-        >
-          検索
-        </button>
-        <button
-          class="btn btn-primary mb-2"
-          type="submit"
-          @click.prevent="clear"
-        >
-          クリア
-        </button>
-      </div>
-    </form>
+    <div class="question-search">
+      <form
+        class="data-form"
+        @submit.prevent="query"
+      >
+        <div class="form-group">
+          <input
+            id="form-body"
+            v-model="queryBody"
+            type="text"
+            placeholder="検索したいキーワードを入力"
+            class="body-edit form-control"
+            minlength="1"
+            maxlength="50"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+          >
+            検索
+          </button>
+          <button
+            class="btn btn-primary mb-2"
+            type="submit"
+            @click.prevent="clear"
+          >
+            クリア
+          </button>
+        </div>
+      </form>
+    </div>
     <div v-if="isLoggedIn()">
-      <router-link to="question/create">
-        質問する
-      </router-link>
+      <p class="post-msg">
+        <router-link to="question/create">
+          メッセージを投稿する
+        </router-link>
+      </p>
+      <p class="post-qes">
+        <a href="https://ja.stackoverflow.com/questions/ask">
+          質問したい方はこちら
+        </a>
+      </p>
     </div>
     <div
       v-if="!isLoggedIn()"
@@ -55,6 +65,7 @@
       <div
         v-for="question in questions"
         :key="question.id"
+        class="question-list"
       >
         <h5 class="title">
           <router-link :to="{ name: 'QuestionDetailPage', params: { id: question.id }}">
@@ -74,6 +85,7 @@
       <div
         v-for="ques in resultBody"
         :key="ques.id"
+        class="question-list"
       >
         <h5 class="title">
           <router-link :to="{ name: 'QuestionDetailPage', params: { id: ques.id }}">
